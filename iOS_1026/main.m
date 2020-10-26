@@ -23,6 +23,9 @@ public:
 // 인자를 2개 이상 전달하는 방법
 - (void)go:(int)a speed:(int)speed;
 
+- (void)go:(int)a speed:(int)speed color:(int)color;
+- (void)go:(int)a speed:(int)speed color:(int)color name:(NSString*)name;
+
 @end
 
 @implementation Car
@@ -39,6 +42,14 @@ public:
   printf("go2: %d %d\n", a, speed);
 }
 
+- (void)go:(int)a speed:(int)speed color:(int)color {
+  printf("go3: %d %d %d\n", a, speed, color);
+}
+
+- (void)go:(int)a speed:(int)speed color:(int)color name:(NSString*)name {
+  printf("go4: %d %d %d %s\n", a, speed, color, [name UTF8String]);
+}
+
 @end
 
 int main() {
@@ -51,6 +62,10 @@ int main() {
   
   // car.go(42, 100);
   [car go:42 speed:100];
+  
+  [car go:10 speed:20 color:30];
+  
+  [car go:10 speed:20 color:30 name:@"Tom"];
   
 }
 
