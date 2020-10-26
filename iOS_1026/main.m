@@ -15,8 +15,10 @@ public:
 // 1. ObjC에서는 필드의 이름규칙
 //      _color, _age, _speed
 
+// 아래 필드를 초기화하는 초기화 메소드를 직접 만들어보시고, 2단계 생성 패턴을 이용해서 사용하는 코드도 만들어보세요.
 @interface Car : NSObject {
   int _color;
+  int _speed;
 }
 
 - (id)init;
