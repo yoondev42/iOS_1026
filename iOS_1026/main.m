@@ -1,56 +1,112 @@
+// Auto Release Pool
 #import <Foundation/Foundation.h>
 
-// ObjC의 '객체 수명 관리'
-//  : 중요합니다
+@interface Car : NSObject {
+  int _red;
+  int _green;
+  int _blue;
+}
 
-// ObjC 메모리 관리 3가지 방법
-//  1. MRC(Manual Reference Counting)
-//    : 개발자가 직접 참조 계수 관리 코드를 삽입한다.
-
-//  2. ARC(Auto Reference Counting)   - Default
-//    : 컴파일러가 컴파일 타임에 코드를 분석해서, 참조 계수 관리 코드를 자동으로 삽입한다.
-
-//  3. GC(Garbage Collection)         - Deprecated
-//    : 별도의 런타임이 객체의 수명을 관리한다.
-
-@interface Car : NSObject
-// 객체가 메모리에서 파괴되는 시점에 호출되는 메소드: "C++의 소멸자"
+- (id)initWithRed:(int)red green:(int)green blue:(int)blue;
 - (void)dealloc;
+
+// 편의 생성자
+//   Java: 정적 팩토리 메소드
++ (Car*)redCar;
++ (Car*)greenCar;
+// 메소드를 통해 생성되는 객체의 수명은 사용자가 아니라, 자동 해체풀(Auto Release Pool)을 이용해서 관리하자.
 
 @end
 
 @implementation Car
 
-// dealloc
-// ARC: 부모의 dealloc을 자동으로 호출한다.
-// MRC: 부모의 dealloc을 명시적으로 호출해야 합니다.
 - (void)dealloc {
   printf("Car 객체 파괴\n");
-  
   [super dealloc];
 }
+
++ (Car*)redCar {
+  return [[[Car alloc] initWithRed:255 green:0 blue:0] autorelease];;
+}
+
++ (Car*)greenCar {
+  // 생성된 객체를 autoreleasepool에 등록한다.
+  return [[[Car alloc] initWithRed:0 green:255 blue:0] autorelease];
+}
+
+- (id)initWithRed:(int)red green:(int)green blue:(int)blue {
+  self = [super init];
+  if (self) {
+    _red = red;
+    _green = green;
+    _blue = blue;
+  }
+  return self;
+}
+
 @end
 
-
-// 1. 컴파일 옵션을 변경해서, ARC -> MRC 변경해야 합니다.
-// 2. MRC에서는 객체의 참조 계수를 증감을 개발자가 직접 관리해야 합니다.
-//   참조 계수 증가: retain
-//   참조 계수 감소: release
-
-int main() {
-  // 1. 객체 생성시 최초의 참조 계수 값은 1 입니다.
-  Car *p1 = [Car new];
-  printf("Ref counting: %ld\n", [p1 retainCount]);
-  
-  // 2. 객체의 포인터 대입 후, 참조 계수는 증가해야 합니다.
-  Car *p2 = p1;
-  [p2 retain];
-  printf("Ref counting: %ld\n", [p1 retainCount]);
-  
-  // 3. 객체의 포인터를 더 이상 사용하지 않을 경우,
-  //    참조 계수를 감소시켜야 합니다.
-  [p1 release];
-  printf("Ref counting: %ld\n", [p1 retainCount]);  // 1
-  [p2 release];                                     // 1 -> 0 (객체 메모리 파괴)
+void foo(Car* p) {
   
 }
+
+
+int main() {
+  // Car* c1 = [[Car alloc] initWithRed:255 green:0 blue:0];  // Car - red
+  // Car* c2 = [[Car alloc] initWithRed:0 green:255 blue:0];  // Car - green
+  
+  
+  // '자동 해체풀'을 만드는 방법
+  NSAutoreleasePool* pool = [NSAutoreleasePool new];  // [NSAutoReleasePool alloc] init]];
+  
+  Car* c1 = [Car redCar];
+  foo(c1);
+
+  // Car* c2 = [Car greenCar];
+  foo([Car greenCar]);
+  
+  [pool release]; // pool에 등록된 모든 객체에게 release 메세지를 전달한다.
+  
+}
+
+
+
+
+
+
+
+
+
+
+// C 언어
+#if 0
+struct data {
+  int n;
+};
+
+struct data* foo() {
+  // struct data v;
+  // return &v;
+  // 해결 방법 2가지
+  
+  // 1. malloc
+  //   문제점: 더 이상 사용하지 않을 경우, 반드시 free를 해주어야 한다.
+  //   ex) strdup
+  // struct data* p = malloc(sizeof(struct data));
+  // p->n = 100;
+  // return p;
+  
+  // 2. static - 내부 정적 변수
+  //   문제점: 재진입이 불가능한 함수
+  //         "재귀 X", "스레드 안전하지 않다"
+  static struct data v = { 100 };
+  return &v;
+}
+
+int main() {
+  struct data* p = foo();
+  printf("%d\n", p->n);
+
+  // free(p);
+}
+#endif
