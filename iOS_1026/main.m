@@ -9,15 +9,19 @@ public:
   void go();
   void go(int a);
   void go(int a, int speed);
+  
   void go(int a  int speed, int color);
+  void go(int a, int speed, int color, NSString* name);
 };
 #endif
 
 @interface Car : NSObject
 
 - (void)go;
-
 - (void)go:(int)a;
+
+// 인자를 2개 이상 전달하는 방법
+- (void)go:(int)a speed:(int)speed;
 
 @end
 
@@ -31,6 +35,10 @@ public:
   printf("go1: %d\n", a);
 }
 
+- (void)go:(int)a speed:(int)speed {
+  printf("go2: %d %d\n", a, speed);
+}
+
 @end
 
 int main() {
@@ -40,6 +48,9 @@ int main() {
   
   // car.go(42);
   [car go:42];
+  
+  // car.go(42, 100);
+  [car go:42 speed:100];
   
 }
 
