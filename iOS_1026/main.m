@@ -1,92 +1,31 @@
-// 프로퍼티
 #import <Foundation/Foundation.h>
 
-#if 0
-@interface User : NSObject {
-  NSString* _name;
-  int _age;
-}
+// ObjC의 '객체 수명 관리'
+//  : 중요합니다
 
-- (id)initWithName:(NSString*)name age:(int)age;
+// ObjC 메모리 관리 3가지 방법
+//  1. MRC(Manual Reference Counting)
+//    : 개발자가 직접 참조 계수 관리 코드를 삽입한다.
 
-// 중요: ObjC의 Getter / Setter의 이름 규칙은 매우 중요합니다.
-- (NSString*)name;
-- (int)age;
+//  2. ARC(Auto Reference Counting)   - Default
+//    : 컴파일러가 컴파일 타임에 코드를 분석해서, 참조 계수 관리 코드를 자동으로 삽입한다.
 
-- (void)setName:(NSString*)name;
-- (void)setAge:(int)age;
+//  3. GC(Garbage Collection)         - Deprecated
+//    : 별도의 런타임이 객체의 수명을 관리한다.
 
-@end
-
-@implementation User
-
-- (void)setName:(NSString*)name {
-  _name = name;
-}
-
-- (void)setAge:(int)age {
-  _age = age;
-}
-
-- (NSString*)name {
-  return _name;
-}
-
-- (int)age {
-  return _age;
-}
-
-- (id)initWithName:(NSString*)name age:(int)age {
-  self = [super init];
-  if (self) {
-    _name = name;
-    _age = age;
-  }
-  return self;
-}
-
-@end
-#endif
-
-// 1. ObjC에서 Getter / Setter의 이름 규칙을 제대로 사용한다면
-//    닷 연산자를 이용해서 Getter / Setter를 호출할 수 있습니다.
-
-// 2. ObjC는 '프로퍼티'라는 문법을 제공합니다.
-//    필드 / 접근자 메소드(Getter + Setter)를 자동으로 생성하는 문법
-
-@interface User : NSObject
-
-@property NSString* name;
-@property int age;
-
-- (id)initWithName:(NSString*)name age:(int)age;
+@interface Car : NSObject
+// 객체가 메모리에서 파괴되는 시점에 호출되는 메소드: "C++의 소멸자"
+- (void)dealloc;
 
 @end
 
-@implementation User
-
-- (id)initWithName:(NSString*)name age:(int)age {
-  self = [super init];
-  if (self) {
-    _name = name;
-    _age = age;
-  }
-  return self;
+@implementation Car
+- (void)dealloc {
+  printf("Car 객체 파괴\n");
 }
-
 @end
 
 int main() {
-  User* user = [[User alloc] initWithName:@"Tom" age:42];
-  NSLog(@"%@(%d)", [user name], [user age]);
+  Car *p = [Car new];
   
-  [user setName:@"Bob"];
-  [user setAge:16];
-  NSLog(@"%@(%d)", [user name], [user age]);
-  
-  user.name = @"Alice";  // [user setName:@"Alice"];
-  user.age = 24;         // [user setAge:24];
-  
-  NSLog(@"%@(%d)", user.name, user.age);
-  //             [user name], [user age]
 }
