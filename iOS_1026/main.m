@@ -43,8 +43,6 @@
 // 지연 초기화를 위해서 Getter를 재정의해야 한다.
 - (Image*)image;
 
-
-
 - (int)age;
 - (void)setAge:(int)age;
 
@@ -60,16 +58,16 @@
   // 무조건 메모리에 직접 접근해야 합니다.
   // 직접 접근하지 않을 경우, 재귀 코드가 됩니다.
   // return self.age;
+  printf("hello\n");
   return _age;
 }
 
 - (void)setAge:(int)age {
   // 무조건 메모리에 직접 접근해야 합니다.
   // self.age = age;
+  printf("hello\n");
   _age = age;
 }
-
-
 
 - (Image*)image {
   if (_image == nil)
@@ -88,8 +86,9 @@
   
   if (self) {
     // 1. 직접 접근
-     _firstName = firstName;
-     _lastName = lastName;
+    _firstName = firstName;
+    _lastName = lastName;
+    _age = 100;
     // 2. 접근자 메소드
     // self.firstName = firstName;
     // self.lastName = lastName;
