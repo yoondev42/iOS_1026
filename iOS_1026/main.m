@@ -22,11 +22,31 @@ class Car {
   int n;
 }
 
+// 메소드 선언 영역
+// 1. 인스턴스 메소드
+
+// void go();
+// - (return_type)method_name;
+- (void)go;
+
+// 2. 클래스 메소드 - 객체를 생성하지 않아도 호출 가능한 메소드
+// static NSString* name();
++ (NSString*)name;
+
 @end
 
 
 // 클래스 정의부 - .m(소스 파일)
 @implementation Car
+
+// 메소드 정의 영역
+- (void)go {
+  printf("go - %d\n", speed);
+}
+
++ (NSString *)name {
+  return @"Car";
+}
 
 @end
 
@@ -38,4 +58,10 @@ int main() {
   
   car->speed = 100;
   printf("%d\n", car->speed);
+  
+  // "car의 객체에 go의 메세지를 보낸다." 라고 표현합니다.
+  // car.go();
+  [car go];
+  NSString* name = [Car name];
+  NSLog(@"%@", name);
 }
