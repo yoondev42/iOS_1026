@@ -102,7 +102,7 @@ public:
 }
 
 // 부모의 필드를 온전하게 초기화할 수 있는 초기화 메소드를 설계해야 한다.
-- (id)initWithColor:(int)color speed:(int)speed age:(int)age;
+- (instancetype)initWithColor:(int)color speed:(int)speed age:(int)age;
 
 - (int)age;
 
@@ -114,7 +114,9 @@ public:
   return _age;
 }
 
-- (id)initWithColor:(int)color speed:(int)speed age:(int)age {
+// 초기화 메소드에서만 사용할 수 있는 키워드
+// => 실제 타입 정보를 기반으로 컴파일 경고를 주는 역활
+- (instancetype)initWithColor:(int)color speed:(int)speed age:(int)age {
   // 1. 부모의 '지정 초기화 메소드'를 호출한다.
   self = [super initWithColor:color speed:speed];
   
@@ -128,8 +130,17 @@ public:
 
 @end
 
+@interface User : NSObject
+@end
+
+@implementation User
+@end
+
 
 int main() {
+  // User* u = [[Truck alloc] initWithColor:100 speed:20 age:30];
+  
+  
   Truck* t = [[Truck alloc] initWithColor:100 speed:42 age:35];
   NSLog(@"%d %d %d", [t color], [t speed], [t age]);
 }
