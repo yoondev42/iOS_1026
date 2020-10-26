@@ -19,12 +19,42 @@
 //   readonly: getter
 //   readwrite: getter + setter        - 기본 속성(생략)
 
+@interface Phone : NSObject
+@end
+@implementation Phone
+@end
+
 @interface User : NSObject
 @property(strong, nonatomic) NSString* name;
 @property(assign, nonatomic, readonly) int age;
+
+- (void)foo;
+
+@property(strong, nonatomic) Phone* phone1;
+@property(weak, atomic) Phone* phone2;
+
 @end
 
 @implementation User
+
+- (void)foo {
+  Phone* p = [[Phone alloc] init];
+  
+  // _phone1 = p;
+  // _phone2 = p;
+  // 결론: 위의 코드는 아무런 차이가 없습니다.
+  //      메모리에 직접 접근하는 코드 입니다.
+  
+  // 아래의 코드는 setter를 이용하는 코드 이기 때문에, 프로퍼티 attribute에 따라서 다른 동작을 수행합니다.
+  self.phone1 = p;
+  // [self setPhone:phone1];
+  // 참조 계수 증가 / 동기화 X
+  
+  self.phone2 = p;
+  // [self setPhone:phone2];
+  // 참조 계수 증가 X / 동기화 O
+}
+
 @end
 
 int main() {
