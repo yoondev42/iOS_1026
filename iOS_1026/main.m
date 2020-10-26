@@ -1,82 +1,64 @@
 #import <Foundation/Foundation.h>
 
-// 프로퍼티 속성(ARC)
+// 소유권 있음: 강한 참조
+//    - 참조 계수를 증가시키거나, 감소시킨다.
+
+// 소유권 없음: 약한 참조
+//    - 참조 계수를 조작하지 않음.
+//    문제점: 소유한 객체가 먼저 파괴될 가능성이 존재한다. - 댕글링 포인터
+
+//    weak: auto-niling
+//         - 참조하고자 하는 객체가 이미 파괴된 경우, 포인터의 값을 nil로 변경해준다.
+
+//    unsafe_unretained: auto-niling X
+//         - auto-niling을 지원하지 않습니다.
+//         - weak 보다 조금 빠릅니다.
+//         - 이미 파괴된 객체를 참조할 위험성이 존재한다.
+
 @class Phone;
 @interface Person : NSObject
-
-// 소유권 - MRC / ARC 프로퍼티 속성에 대한 키워드가 변경되었습니다.
-
-//                     MRC                    ARC
-// 소유권 있음           retain                 strong
-// 소유권 없음           assign                 weak
-//                                           unsafe_unretained
-// 기본 타입            assign                 assign
-
-// @property(strong) Phone* phone;
 @property(weak) Phone* phone;
-@property(assign) int age;
-// 위의 기본 타입(built-in type)은 참조 계수를 통해 수명 관리되지 않습니다.
-
-
-// 소유권 O
-// @property(strong) Phone* phone;
-// - setPhone(retain) / init(retain) / dealloc(release)
-
-// 소유권 X
-// @property(weak) Phone* phone;
-// @property(unsafe_unretained) Phone* phone;
-// - setPhone / init / dealloc
-
-
-- (id)initWithPhone:(Phone*)phone;
-- (void)dealloc;
-
 @end
 
 @implementation Person
 
-- (id)initWithPhone:(Phone*)phone {
-  self = [super init];
-  if (self) {
-    _phone = phone;
-    // strong: _phone = [phone retain];
-    // weak, unsafe_unretained: _phone = phone;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  printf("Person dealloc\n");
-  // strong: [phone release];
-  // weak, unsafe_unretained: X
-}
-
 @end
 
 @interface Phone : NSObject
+
+- (void)foo;
+
 - (void)dealloc;
 @end
 
-@implementation Phone
+@implementation Phone {
+  int _age[100];
+}
+
+- (void)foo {
+  memset(&_age, 0, sizeof _age);
+}
+
 - (void)dealloc {
-  printf("Phone dealloc\n");
+  printf("Phone 객체 파괴\n");
 }
 @end
 
 int main() {
-  Person* person = [[Person alloc] init];
   Phone* phone = [[Phone alloc] init];
+  Person* person = [[Person alloc] init];
   
-  [person setPhone:phone];
-  printf("phone = nil\n");
+  person.phone = phone;
+  // [person setPhone:phone];
+  
   phone = nil;
-  printf("person = nil\n");
-  person = nil;
   
-  printf("main end\n");
+  if (person.phone) {
+    printf("%p\n", person.phone);
+    [person.phone foo];
+  } else {
+    printf("%p - 이미 파괴되었음.\n", person.phone);
+  }
+  
+  
 }
-
-
-
-
-
