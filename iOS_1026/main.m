@@ -1,7 +1,5 @@
 #import <Foundation/Foundation.h>
 
-// 소유권 있음: 강한 참조
-//    - 참조 계수를 증가시키거나, 감소시킨다.
 
 // 소유권 없음: 약한 참조
 //    - 참조 계수를 조작하지 않음.
@@ -15,6 +13,36 @@
 //         - weak 보다 조금 빠릅니다.
 //         - 이미 파괴된 객체를 참조할 위험성이 존재한다.
 
+// 소유권 있음: 강한 참조
+//    - 참조 계수를 증가시키거나, 감소시킨다.
+//    문제점: 참조 계수의 메모리 관리는 상호 참조에 의한 누수의 위험성이 있습니다.
+//        => 상호 참조의 문제가 발생할 경우, 약한 참조를 통해서 문제를 해결할 수 있습니다.
+@interface Node : NSObject
+
+@property(weak) Node* next;
+
+- (void)dealloc;
+@end
+@implementation Node
+- (void)dealloc {
+  printf("Node 파괴\n");
+}
+@end
+
+void foo() {
+  Node* p1 = [[Node alloc] init];
+  Node* p2 = [[Node alloc] init];
+  
+  p1.next = p2;
+  p2.next = p1;
+}
+
+int main() {
+  foo();
+}
+
+
+#if 0
 @class Phone;
 @interface Person : NSObject
 @property(weak) Phone* phone;
@@ -62,3 +90,4 @@ int main() {
   
   
 }
+#endif
