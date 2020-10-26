@@ -1,102 +1,56 @@
-// 메소드
-// 1. 여러 개의 인자를 가지는 메소드를 정의하는 방법
-// 2. 함수 오버로딩
-//    : 인자의 정보가 함수의 심볼에 포함되기 때문에, 네임 맹글링이 불필요하다.
-
 #import <Foundation/Foundation.h>
 
-// C++ / Java - 오버로딩
-//  : 컴파일러가 인자의 정보에 따라 이름을 변형한다. - 네임 맹글링
 #if 0
 class Car {
+  int color;
 public:
-  void go();
-  void go(int a);
-  void go(int a, int speed);
-  void go(int a  int speed, int color);
-  void go(int a, int speed, int color, NSString* name);
+  Car(): color(0) {}                  // 기본 생성자
+  Car(int n): color(n) {}
 };
 #endif
 
-@interface Car : NSObject
+// 초기화 메소드
+//   => "생성자" 개념과 동일합니다.
 
-- (void)go;
-- (void)go:(int)a;
+// 1. ObjC에서는 필드의 이름규칙
+//      _color, _age, _speed
 
-// 인자를 2개 이상 전달하는 방법
-- (void)go:(int)a speed:(int)speed;
-- (void)go:(int)a speed:(int)speed color:(int)color;
-- (void)go:(int)a speed:(int)speed color:(int)color name:(NSString*)name;
+@interface Car : NSObject {
+  int _color;
+}
+
+- (id)init;
+- (int)color;
+// ObjC에서는 getter를 만들때 필드의 _를 제거한 이름을 사용하는 것이 원칙입니다.
 
 @end
 
 @implementation Car
 
-// go
-- (void)go {
-  printf("go0\n");
+- (int)color {
+  return _color;
 }
 
-// go:
-- (void)go:(int)a {
-  printf("go1: %d\n", a);
-}
+// 2. ObjC에서 초기화 메소드를 만드는 방법
+//  - 초기화 메소드에서는 self의 값을 변경하는 것이 가능합니다.
 
-// go:speed:
-- (void)go:(int)a speed:(int)speed {
-  printf("go2: %d %d\n", a, speed);
+- (id)init {
+  printf("init\n");
+  // 1. 부모의 초기화 메소드를 명시적으로 호출합니다.
+  //    초기화 메소드가 실패할 경우, nil을 반환합니다.
+  self = [super init];
+  
+  // 2. 부모의 초기화메소드가 실패하지 않을 경우, 자신의 필드를 초기화합니다.
+  if (self != nil) {  // if (self) {
+    _color = 42;
+  }
+  
+  // 3. self를 반환합니다.
+  return self;
 }
-
-// go:speed:color:
-- (void)go:(int)a speed:(int)speed color:(int)color {
-  printf("go3: %d %d %d\n", a, speed, color);
-}
-
-// go:speed:color:name:
-- (void)go:(int)a speed:(int)speed color:(int)color name:(NSString*)name {
-  printf("go4: %d %d %d %s\n", a, speed, color, [name UTF8String]);
-}
-
 @end
 
 int main() {
   Car* car = [Car new];
-  
-  [car go];
-  
-  // car.go(42);
-  [car go:42];
-  
-  // car.go(42, 100);
-  [car go:42 speed:100];
-  
-  // car.go(10, 20, 30);
-  [car go:10 speed:20 color:30];
-  
-  // car.go(10, 20, 30, "Tom");
-  [car go:10
-    speed:20
-    color:30
-     name:@"Tom"];
+  printf("color: %d\n", [car color]);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
