@@ -66,7 +66,6 @@ int main() {
   [car go:10 speed:20 color:30];
   
   [car go:10 speed:20 color:30 name:@"Tom"];
-  
 }
 
 
