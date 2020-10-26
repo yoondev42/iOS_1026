@@ -22,11 +22,14 @@
 @implementation Person
 
 - (void)setPhone:(Phone *)phone {
-  // 1. 기존 객체의 참조 계수를 감소해야 한다.
-  [_phone release];
-  _phone = phone;
-  // 2. 새로운 객체의 참조 계수를 증가해야 한다.
-  [phone retain];
+  // 3. 기존 객체와 동일한 객체가 아닌지 체크해야 한다.
+  if (phone != _phone) {
+    // 1. 기존 객체의 참조 계수를 감소해야 한다.
+    [_phone release];
+    _phone = phone;
+    // 2. 새로운 객체의 참조 계수를 증가해야 한다.
+    [phone retain];
+  }
 }
 
 - (void)dealloc {
@@ -54,6 +57,7 @@ int main() {
   Person* person = [[Person alloc] init];
   Phone* phone = [[Phone alloc] init];
   
+  [person setPhone:phone];
   [person setPhone:phone];
   printf("phone: %ld\n", [phone retainCount]);
   
