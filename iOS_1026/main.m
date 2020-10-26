@@ -55,7 +55,6 @@
 
 - (void)print {
   NSLog(@"%@, %@, %p", _firstName, _lastName, self.image);
-  // NSLog(@"%@, %@", self.firstName, self.lastName);
 }
 
 - (id)initWithFirstName:(NSString*)firstName lastName:(NSString*)lastName {
