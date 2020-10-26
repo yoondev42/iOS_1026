@@ -1,32 +1,32 @@
-
 #import <Foundation/Foundation.h>
 
-// 접근자 메소드를 직접 작성하는 경우보다는 프로퍼티를 이용해서 작성하는 경우가 많습니다.
-//  의도
-//    소유권 O @property(retain) Phone* phone;
-#if 0
-- (void)setPhone:(Phone *)phone {
-  if (phone != _phone) {
-    [_phone release];
-    _phone = [phone retain];
-  }
-}
-#endif
-//    소유권 X @property(assign) Phone* phone;
-#if 0
-- (void)setPhone:(Phone *)phone {
-  _phone = phone;
-}
-#endif
-
-
+// 프로퍼티 속성(ARC)
 @class Phone;
 @interface Person : NSObject
 
+// 소유권 - MRC / ARC 프로퍼티 속성에 대한 키워드가 변경되었습니다.
+
+//                     MRC                    ARC
+// 소유권 있음           retain                 strong
+// 소유권 없음           assign                 weak
+//                                           unsafe_unretained
+// 기본 타입            assign                 assign
+
+// @property(strong) Phone* phone;
+@property(weak) Phone* phone;
+@property(assign) int age;
+// 위의 기본 타입(built-in type)은 참조 계수를 통해 수명 관리되지 않습니다.
+
+
+// 소유권 O
+// @property(strong) Phone* phone;
+// - setPhone(retain) / init(retain) / dealloc(release)
+
 // 소유권 X
-@property(assign) Phone* phone;
-// @property Phone* phone;
-// 위처럼 사용하면, 소유권 지정에 대한 부분이 누락되어서 오류의 위험성이 있다고 경고해줍니다.
+// @property(weak) Phone* phone;
+// @property(unsafe_unretained) Phone* phone;
+// - setPhone / init / dealloc
+
 
 - (id)initWithPhone:(Phone*)phone;
 - (void)dealloc;
@@ -35,17 +35,20 @@
 
 @implementation Person
 
-- (id)initWithPhone:(Phone *)phone {
+- (id)initWithPhone:(Phone*)phone {
   self = [super init];
   if (self) {
     _phone = phone;
+    // strong: _phone = [phone retain];
+    // weak, unsafe_unretained: _phone = phone;
   }
   return self;
 }
 
 - (void)dealloc {
-  printf("Person 객체 파괴\n");
-  [super dealloc];
+  printf("Person dealloc\n");
+  // strong: [phone release];
+  // weak, unsafe_unretained: X
 }
 
 @end
@@ -56,61 +59,24 @@
 
 @implementation Phone
 - (void)dealloc {
-  printf("Phone 객체 파괴\n");
-  [super dealloc];
+  printf("Phone dealloc\n");
 }
 @end
-
-
-#if 0
-@class Phone;
-@interface Person : NSObject
-
-// 소유권 O
-@property(retain) Phone* phone;
-
-- (id)initWithPhone:(Phone*)phone;
-- (void)dealloc;
-
-@end
-
-@implementation Person
-
-- (id)initWithPhone:(Phone *)phone {
-  self = [super init];
-  if (self) {
-    _phone = [phone retain];
-  }
-  return self;
-}
-
-- (void)dealloc {
-  printf("Person 객체 파괴\n");
-  [_phone release];
-  [super dealloc];
-}
-
-@end
-
-@interface Phone : NSObject
-- (void)dealloc;
-@end
-
-@implementation Phone
-- (void)dealloc {
-  printf("Phone 객체 파괴\n");
-  [super dealloc];
-}
-@end
-#endif
 
 int main() {
   Person* person = [[Person alloc] init];
   Phone* phone = [[Phone alloc] init];
   
   [person setPhone:phone];
-  printf("phone: %ld\n", [phone retainCount]);
+  printf("phone = nil\n");
+  phone = nil;
+  printf("person = nil\n");
+  person = nil;
   
-  [phone release];
-  [person release];
+  printf("main end\n");
 }
+
+
+
+
+

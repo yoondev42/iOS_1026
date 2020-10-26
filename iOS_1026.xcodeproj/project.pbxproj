@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7A9782EE25469E9300CAD1B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9782ED25469E9300CAD1B5 /* main.m */; };
+		7A9782F22546A5FB00CAD1B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9782F12546A5FB00CAD1B5 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,7 +32,8 @@
 		7A744364254676EA00E5E6D8 /* 6_참조계수.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "6_참조계수.m"; sourceTree = "<group>"; };
 		7A9782E125468E8300CAD1B5 /* 7_AutoReleasePool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = 7_AutoReleasePool.m; sourceTree = "<group>"; };
 		7A9782E5254698B800CAD1B5 /* 8_객체소유권.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "8_객체소유권.m"; sourceTree = "<group>"; };
-		7A9782ED25469E9300CAD1B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7A9782ED25469E9300CAD1B5 /* 9_프로퍼티속성(MRC).m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "9_프로퍼티속성(MRC).m"; sourceTree = "<group>"; };
+		7A9782F12546A5FB00CAD1B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +74,8 @@
 				7A744364254676EA00E5E6D8 /* 6_참조계수.m */,
 				7A9782E125468E8300CAD1B5 /* 7_AutoReleasePool.m */,
 				7A9782E5254698B800CAD1B5 /* 8_객체소유권.m */,
-				7A9782ED25469E9300CAD1B5 /* main.m */,
+				7A9782ED25469E9300CAD1B5 /* 9_프로퍼티속성(MRC).m */,
+				7A9782F12546A5FB00CAD1B5 /* main.m */,
 			);
 			path = iOS_1026;
 			sourceTree = "<group>";
@@ -134,7 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A9782EE25469E9300CAD1B5 /* main.m in Sources */,
+				7A9782F22546A5FB00CAD1B5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +257,7 @@
 		7A744342254648E800E5E6D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -265,7 +267,7 @@
 		7A744343254648E800E5E6D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
