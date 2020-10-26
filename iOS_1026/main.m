@@ -15,11 +15,27 @@
   Phone* _phone;
 }
 
+- (id)initWithPhone:(Phone*)phone;
+
 - (void)setPhone:(Phone*)phone;
 - (void)dealloc;
 
 @end
 @implementation Person
+
+- (id)initWithPhone:(Phone *)phone {
+  self = [super init];
+  if (self) {
+    // _phone = phone;
+    // [_phone retain];
+    
+    _phone = [phone retain];
+    // 자신이 소유한 객체의 참조 계수를 증가해야 합니다.
+  }
+  
+  return self;
+}
+
 
 - (void)setPhone:(Phone *)phone {
   // 3. 기존 객체와 동일한 객체가 아닌지 체크해야 한다.
