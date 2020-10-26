@@ -14,6 +14,9 @@ class Car {
 // 클래스 선언부 - .h(헤더 파일)
 @interface Car : NSObject {
   // 필드를 정의할 수 있습니다.
+  // : 접근 지정자를 제공하지 않을 경우, 기본 접근 지정 레벨은 protected 입니다.
+  int age;
+  
 @public
   int speed;
 @protected
@@ -23,8 +26,9 @@ class Car {
 }
 
 // 메소드 선언 영역
-// 1. 인스턴스 메소드
+//  : 메소드에 대해서는 접근 지정자가 제공되지 않습니다.
 
+// 1. 인스턴스 메소드
 // void go();
 // - (return_type)method_name;
 - (void)go;
