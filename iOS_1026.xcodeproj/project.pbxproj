@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7A9782FC2546B56400CAD1B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9782FB2546B56400CAD1B5 /* main.m */; };
+		7A9783012546BA9100CAD1B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9783002546BA9100CAD1B5 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,7 +35,8 @@
 		7A9782ED25469E9300CAD1B5 /* 9_프로퍼티속성(MRC).m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "9_프로퍼티속성(MRC).m"; sourceTree = "<group>"; };
 		7A9782F12546A5FB00CAD1B5 /* 10_프로퍼티속성(ARC).m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "10_프로퍼티속성(ARC).m"; sourceTree = "<group>"; };
 		7A9782F62546ABDE00CAD1B5 /* 11_약한참조(autoniling).m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "11_약한참조(autoniling).m"; sourceTree = "<group>"; };
-		7A9782FB2546B56400CAD1B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7A9782FB2546B56400CAD1B5 /* 12_프로퍼티속성정리.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "12_프로퍼티속성정리.m"; sourceTree = "<group>"; };
+		7A9783002546BA9100CAD1B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +80,8 @@
 				7A9782ED25469E9300CAD1B5 /* 9_프로퍼티속성(MRC).m */,
 				7A9782F12546A5FB00CAD1B5 /* 10_프로퍼티속성(ARC).m */,
 				7A9782F62546ABDE00CAD1B5 /* 11_약한참조(autoniling).m */,
-				7A9782FB2546B56400CAD1B5 /* main.m */,
+				7A9782FB2546B56400CAD1B5 /* 12_프로퍼티속성정리.m */,
+				7A9783002546BA9100CAD1B5 /* main.m */,
 			);
 			path = iOS_1026;
 			sourceTree = "<group>";
@@ -140,7 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A9782FC2546B56400CAD1B5 /* main.m in Sources */,
+				7A9783012546BA9100CAD1B5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,66 +1,87 @@
+
 #import <Foundation/Foundation.h>
 
-// Property Attribute(ARC)
-// 1. 메모리 관리 속성
-//   strong                                        - 기본 속성
-//   weak(autoniling) / unsafe_unretained
-//   assign: built-in type(int, char, double ...)
-//   copy: 복사
-//      - 객체를 복사하는 방법에서 다룹니다.
+// 프로퍼티에 접근하는 방법
+//  1. 객체 외부 - 접근자 메소드(닷 연산자)
+//  2. 객체 내부 - 접근자 메소드(닷 연산자) / 메모리에 직접 접근하는 방법
+//    - 객체 내부에서 인스턴스 변수(필드)에 접근할 때
+//      읽을 때는 직접 접근하고, 쓸때는 접근자 메소드(닷 연산자)를 이용하는 것이 좋다.
+//    예외>
+//      1. 초기화 메소드를 정의할 때 필드의 값을 설정할 때는 직접 접근 해야 한다.
+//      2. 초기화 메소드를 통해 초기화하고자 하는 필드가 부모의 필드인 경우, 부모의 Setter를 이용해서 초기화 해야 한다.
+//      3. 프로퍼티가 지연 초기화(Lazy Initilization)롤 통해 생성되는 경우, 반드시 직접 접근이 아니라 Getter를 이용해야 한다.
+//       - 지연 초기화
+//         : 초기화 시점에 객체를 바로 생성하는 것이 아니라, 처음 접근되는 시점에 생성하는 기술
 
-// 2. 동기화 속성
-//   atomic: 스레드 동기화 - 동시의 여러개의 스레드에서 값을 변경하거나 읽는 작업이 안전하다.         - 기본 속성
-//   nonatomic: 스레드 동기화 X - 동시의 여러개의 스레드에서 값을 변경하거나 읽는 작업이 안전하지 않다.
-//   : 대부분의 경우 여러개의 스레드에서 접근하는 경우가 아니라면,
-//     nonatomic을 사용하는 것이 좋다.
-// * 프로퍼티의 메모리 관리 속성과 동기화 속성은 명시적으로 표현하는 것이 좋다.
-
-// 3. 접근자 메소드 생성
-//   readonly: getter
-//   readwrite: getter + setter        - 기본 속성(생략)
-
-@interface Phone : NSObject
+@interface Image : NSObject
+- (id)init;
 @end
-@implementation Phone
-@end
+@implementation Image
 
-@interface User : NSObject
-@property(strong, nonatomic) NSString* name;
-@property(assign, nonatomic, readonly) int age;
-
-- (void)foo;
-
-@property(strong, nonatomic) Phone* phone1;
-@property(weak, atomic) Phone* phone2;
+- (id)init {
+  printf("Image 객체 생성\n");
+  self = [super init];
+  if (self) {
+    
+  }
+  return self;
+}
 
 @end
 
-@implementation User
+@interface Person : NSObject
 
-- (void)foo {
-  Phone* p = [[Phone alloc] init];
+@property(strong, nonatomic) NSString* firstName;
+@property(strong, nonatomic) NSString* lastName;
+
+@property(strong, nonatomic) Image* image;
+
+- (id)initWithFirstName:(NSString*)firstName lastName:(NSString*)lastName;
+- (void)print;
+
+// 지연 초기화를 위해서 Getter를 재정의해야 한다.
+- (Image*)image;
+
+@end
+
+@implementation Person
+
+- (Image*)image {
+  if (_image == nil)
+    _image = [[Image alloc] init];
   
-  // _phone1 = p;
-  // _phone2 = p;
-  // 결론: 위의 코드는 아무런 차이가 없습니다.
-  //      메모리에 직접 접근하는 코드 입니다.
+  return _image;
+}
+
+- (void)print {
+  NSLog(@"%@, %@, %p", _firstName, _lastName, self.image);
+  // NSLog(@"%@, %@", self.firstName, self.lastName);
+}
+
+- (id)initWithFirstName:(NSString*)firstName lastName:(NSString*)lastName {
+  printf("Person 객체 생성\n");
+  self = [super init];
   
-  // 아래의 코드는 setter를 이용하는 코드 이기 때문에, 프로퍼티 attribute에 따라서 다른 동작을 수행합니다.
-  self.phone1 = p;
-  // [self setPhone:phone1];
-  // 참조 계수 증가 / 동기화 X
+  if (self) {
+    // 1. 직접 접근
+     _firstName = firstName;
+     _lastName = lastName;
+    
+    // 2. 접근자 메소드
+    // self.firstName = firstName;
+    // self.lastName = lastName;
+    // 위 처럼 사용할 경우, Person의 자식 클래스가 setter를 오버라이딩 한경우, 제대로 초기화되지 않을 수 있다.
+  }
   
-  self.phone2 = p;
-  // [self setPhone:phone2];
-  // 참조 계수 증가 X / 동기화 O
+  return self;
 }
 
 @end
 
 int main() {
-  User* user = [[User alloc] init];
-  user.name = @"Tom";
-  // user.age = 42;
+  Person* person = [[Person alloc] initWithFirstName:@"Gildong" lastName:@"Hong"];
+  printf("Person 객체 생성 후\n");
   
-  NSLog(@"%@(%d)", user.name, user.age);
+  [person print];
+  printf("%p\n", person.image);
 }
