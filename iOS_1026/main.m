@@ -21,10 +21,13 @@ public:
   int _speed;
 }
 
-- (id)init;
-
 // ObjC는 아래처럼 id를 반환하고, init으로 시작하는 메소드를 초기화 메소드로 취급합니다.
+- (id)init;
 - (id)initWithColor:(int)color;
+
+// 지정 초기화 메소드 - Designated Initializer
+//  : 클래스의 모든 필드를 온전하게 초기화하는 메소드
+//    클래스를 설계한 사람이 의도한 초기화 메소드
 - (id)initWithColor:(int)color speed:(int)speed;
 
 
@@ -88,8 +91,51 @@ public:
   return self;
 }
 
+@end
+
+// 1. ObjC 에서는 부모의 초기화 메소드를 상속 받는다.
+//  => 잘못된 초기화 메소드를 호출할 경우, 부모 객체의 필드가 온전하게 초기화되지 않을 위험성이 있다.
+// 2. 반드시 상속을 통해 부모의 초기화 메소드를 호출 할 때, 지정 초기화 메소드를 호출해야 한다.
+
+@interface Truck : Car {
+  int _age;
+}
+
+// 부모의 필드를 온전하게 초기화할 수 있는 초기화 메소드를 설계해야 한다.
+- (id)initWithColor:(int)color speed:(int)speed age:(int)age;
+
+- (int)age;
 
 @end
+
+@implementation Truck
+
+- (int)age {
+  return _age;
+}
+
+- (id)initWithColor:(int)color speed:(int)speed age:(int)age {
+  // 1. 부모의 '지정 초기화 메소드'를 호출한다.
+  self = [super initWithColor:color speed:speed];
+  
+  // 2. 자신의 필드를 초기화한다.
+  if (self) {
+    _age = age;
+  }
+  
+  return self;
+}
+
+@end
+
+
+int main() {
+  Truck* t = [[Truck alloc] initWithColor:100 speed:42 age:35];
+  NSLog(@"%d %d %d", [t color], [t speed], [t age]);
+}
+
+
+
 
 // new: 무조건 init을 호출합니다.
 //  1. 메모리를 할당합니다.                   -  Car* obj = [Car alloc];
@@ -99,6 +145,7 @@ public:
 // 객체의 메모리 할당과 초기화 메소드를 직접 호출해야 한다.
 //  => 2단계 생성 패턴
 
+#if 0
 int main() {
   // Car* car = [Car new];
   
@@ -111,3 +158,4 @@ int main() {
   Car* car2 = [[Car alloc] initWithColor:100 speed:42];
   printf("color: %d, speed: %d\n", [car2 color], [car2 speed]);
 }
+#endif
