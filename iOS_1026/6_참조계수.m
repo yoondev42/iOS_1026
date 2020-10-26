@@ -49,7 +49,8 @@
 
 int main() {
   // 1. 객체 생성시 최초의 참조 계수 값은 1 입니다.
-  Car *p1 = [Car new];
+  // Car *p1 = [Car new];
+  Car *p1 = [[Car alloc] init];
   printf("Ref counting: %ld\n", [p1 retainCount]);
   
   // 2. 객체의 포인터 대입 후, 참조 계수는 증가해야 합니다.
