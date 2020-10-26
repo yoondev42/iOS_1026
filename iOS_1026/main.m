@@ -25,9 +25,11 @@ public:
 
 // ObjC는 아래처럼 id를 반환하고, init으로 시작하는 메소드를 초기화 메소드로 취급합니다.
 - (id)initWithColor:(int)color;
+- (id)initWithColor:(int)color speed:(int)speed;
 
 
 - (int)color;
+- (int)speed;
 // ObjC에서는 getter를 만들때 필드의 _를 제거한 이름을 사용하는 것이 원칙입니다.
 
 @end
@@ -36,6 +38,10 @@ public:
 
 - (int)color {
   return _color;
+}
+
+- (int)speed {
+  return _speed;
 }
 
 // 2. ObjC에서 초기화 메소드를 만드는 방법
@@ -63,11 +69,22 @@ public:
 }
 
 - (id)initWithColor:(int)color {
-  printf("initWithColor\n");
+  printf("initWithColor:\n");
   self = [super init];
   if (self) {
     _color = color;
   }
+  return self;
+}
+
+- (id)initWithColor:(int)color speed:(int)speed {
+  printf("initWithColor:speed:\n");
+  self = [super init];
+  if (self) {
+    _color = color;
+    _speed = speed;
+  }
+  
   return self;
 }
 
@@ -90,4 +107,7 @@ int main() {
   
   Car* car = [[Car alloc] initWithColor:100];
   printf("color: %d\n", [car color]);
+  
+  Car* car2 = [[Car alloc] initWithColor:100 speed:42];
+  printf("color: %d, speed: %d\n", [car2 color], [car2 speed]);
 }
