@@ -50,13 +50,43 @@ void foo(Car* p) {
   
 }
 
+// 여러 개의 객체를 사용합니다.
+void goo() {
+  printf("goo 시작\n");
+  @autoreleasepool {
+  
+    for (int i = 0 ; i < 100; ++i) {
+      [Car redCar];
+    }
+    
+  }
+  
+  printf("goo 종료\n");
+}
+
+// 1. 메소드를 통해 생성되는 객체의 수명은 사용자가 아니라, 자동 해체풀(Auto Release Pool)을 이용해서 관리하자.
+// 2. autorelease 를 통해서 자동 해체 풀에 객체를 등록할 수 있습니다.
+// 3. 반드시 프로그램 내에 1개 이상의 자동 해체 풀이 존재해야 합니다.
+// 4. @autoreleasepool{} 을 통해 쉽게 자동 해체 풀을 생성할 수 있습니다.
 
 int main() {
   // Car* c1 = [[Car alloc] initWithRed:255 green:0 blue:0];  // Car - red
   // Car* c2 = [[Car alloc] initWithRed:0 green:255 blue:0];  // Car - green
+    
   
+  // '자동 해체풀'을 만드는 방법 2.
+  @autoreleasepool {
+    Car* c1 = [Car redCar];
+    foo(c1);
+    
+    goo();
+
+    // Car* c2 = [Car greenCar];
+    foo([Car greenCar]);
+  }
   
-  // '자동 해체풀'을 만드는 방법
+#if 0
+  // '자동 해체풀'을 만드는 방법 1.
   NSAutoreleasePool* pool = [NSAutoreleasePool new];  // [NSAutoReleasePool alloc] init]];
   
   Car* c1 = [Car redCar];
@@ -66,6 +96,7 @@ int main() {
   foo([Car greenCar]);
   
   [pool release]; // pool에 등록된 모든 객체에게 release 메세지를 전달한다.
+#endif
   
 }
 
