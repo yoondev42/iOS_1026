@@ -55,14 +55,6 @@ int main() {
 }
 
 
-
-
-
-
-
-
-
-
 //  1. 상속 - 부모 타입을 기반으로 다형성을 구현한다.
 #if 0
 @interface Shape : NSObject
