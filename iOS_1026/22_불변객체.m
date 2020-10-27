@@ -17,7 +17,6 @@
 //   가변객체: NSMutableString / NSMutableArray / NSMutableDictionary
 
 int main() {
-  
   NSMutableDictionary* dic = [@{ @"name": @"Tom" } mutableCopy];
   dic[@"age"] = @42;
   NSLog(@"%@", dic[@"age"]);
@@ -32,8 +31,6 @@ int main() {
   
   [arr addObject:@100];
 
-  
-  
   // NSString* s1 = @"AAA";
   // NSMutableString* s1 = [NSMutableString stringWithString:@"AAA"];
   NSMutableString* s1 = [@"AAA" mutableCopy];
