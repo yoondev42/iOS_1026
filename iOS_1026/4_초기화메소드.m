@@ -56,6 +56,8 @@ public:
 // NULL:  #define NULL (void*)0
 //  nil:  #define nil  (id)0
 
+// Obj C에서는 객체 생성에 실패할 경우, nil을 반환한다.
+
 - (id)init {
   printf("init\n");
   // 1. 부모의 초기화 메소드를 명시적으로 호출합니다.

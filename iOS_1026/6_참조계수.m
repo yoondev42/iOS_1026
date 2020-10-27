@@ -36,6 +36,7 @@
 // 2. MRC에서는 객체의 참조 계수를 증감을 개발자가 직접 관리해야 합니다.
 //   참조 계수 증가: retain
 //   참조 계수 감소: release
+//   참조 계수 확인: retainCount
 // 3. 참조 계수를 구현하는 기술
 //  - Java(VM/GC): 별도의 런타임이 참조 계수를 관리한다.
 //   => 런타임에 객체의 메모리를 수거하는 GC가 동작하므로, 런타임 오버헤드가 발생할 수 있다.
@@ -51,12 +52,12 @@ int main() {
   // 1. 객체 생성시 최초의 참조 계수 값은 1 입니다.
   // Car *p1 = [Car new];
   Car *p1 = [[Car alloc] init];
-  printf("Ref counting: %ld\n", [p1 retainCount]);
+  printf("Ref counting: %ld\n", [p1 retainCount]); // 1
   
   // 2. 객체의 포인터 대입 후, 참조 계수는 증가해야 합니다.
   Car *p2 = p1;
   [p2 retain];
-  printf("Ref counting: %ld\n", [p1 retainCount]);
+  printf("Ref counting: %ld\n", [p1 retainCount]); // 2
   
   // 3. 객체의 포인터를 더 이상 사용하지 않을 경우,
   //    참조 계수를 감소시켜야 합니다.

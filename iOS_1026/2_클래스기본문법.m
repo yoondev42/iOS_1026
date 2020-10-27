@@ -11,6 +11,10 @@ class Car {
 };
 #endif
 
+// Objective-C 최상위 클래스
+// - NSObject
+
+
 // 클래스 선언부 - .h(헤더 파일)
 @interface Car : NSObject {
   // 필드를 정의할 수 있습니다.

@@ -17,7 +17,6 @@
 }
 
 - (id)initWithPhone:(Phone*)phone;
-
 - (void)setPhone:(Phone*)phone;
 - (void)dealloc;
 

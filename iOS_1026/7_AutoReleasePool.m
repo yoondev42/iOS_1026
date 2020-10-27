@@ -130,6 +130,7 @@ struct data* foo() {
   // 2. static - 내부 정적 변수
   //   문제점: 재진입이 불가능한 함수
   //         "재귀 X", "스레드 안전하지 않다"
+  //   ex) strtok / strtok_r(재진입 가능 버전)
   static struct data v = { 100 };
   return &v;
 }
