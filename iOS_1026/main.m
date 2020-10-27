@@ -1,123 +1,43 @@
-// Delegate
 
 #import <Foundation/Foundation.h>
 
 // Cocoa Design Pattern
-// 1. Target-Action Pattern
+// 1. Target-Action: ARC 궁합이 좋지 않다.
+// 2. Delegate
 
-// 2. Delegate Pattern
-//   => Interface 기반의 이벤트 처리 설계
-//    : 다른 객체의 변화에 대응하거나, 다른 객체의 행동에 변화를 줄 수 있는 패턴
-//     ex) xxxDelegate, xxxDataSource
+// 3. 블록 프로그래밍(Block Programming): Functional Programming
 
+// 함수형 언어 특징
+// 1) 함수를 일급 객체(시민)로 취급한다.
+//    - 함수를 참조할 수 있다.
+//    - 함수를 인자로 전달하거나 함수를 반환할 수 있다.
+// 2) 익명 함수를 지원해야 한다.
+//    - Lambda(람다) / Closure(클로져)
 
-#if 0
-interface CLLocationManagerListener {
-  void updateLocation(int x, int y);
-  void failToLocation();
+// Objective-C: [C + ObjC]
+//  : '블록 프로그래밍'은 ObjC의 문법이 아니라 C언어의 확장 문법입니다.
+
+void swap(int* a, int* b) {
+  int temp = *a;
+  *a = *b;
+  *b = temp;
 }
-#endif
-// CLLocationManager의 상태 변화에 대한 메소드를 "프로토콜(=인터페이스)"로 약속하자.
-@protocol CLLocationManagerDelegate<NSObject>
-@required
-- (void)updateLocationWithX:(int)x withY:(int)y;
-@optional
-- (void)failToLocation;
-@end
 
-// CLLocationManager
-//  : 위치 정보를 얻는 클래스
-@interface CLLocationManager : NSObject
-
-@property(weak, nonatomic) id<CLLocationManagerDelegate> delegate;
-
-- (void)startUpdateLocation;
-@end
-
-@implementation CLLocationManager
-
-- (void)startUpdateLocation {
-  // 위치가 업데이트가 되었다.
-  [_delegate updateLocationWithX:10 withY:20];
-  
-  // 위치 정보를 얻는데 실패하였다.
-  if ([_delegate respondsToSelector:@selector(failToLocation)]) {
-    [_delegate failToLocation];
+void sort(int* x, int n) {
+  for (int i = 0 ; i < n - 1; i++) {
+    for (int j = i+1; j < n; j++) {
+      if (x[i] > x[j]) {
+        swap(&x[i], &x[j]);
+      }
+    }
   }
-  
-  // failToLocation을 구현하지 않아도, 정상 동작 할 수 있도록 구현해주어야 한다.
 }
-
-@end
-
-#if 0
-class Navigation extends NSObject implements CLLocationManagerDelegate {
-  
-}
-
-#endif
-
-
-// Navigation
-@interface Navigation : NSObject<CLLocationManagerDelegate>
-@end
-@implementation Navigation
-
-//- (void)failToLocation {
-//  printf("Navigation - 위치 정보를 얻는데 실패하였습니다.\n");
-//}
-
-- (void)updateLocationWithX:(int)x withY:(int)y {
-  printf("Navigation Update - (%d, %d)\n", x, y);
-}
-
-@end
-
-// 확인해야 하는 것
-// 1. delegate를 지정하지 않았을 때
-//    - 'nil' 객체를 대상으로 메소드를 호출할 때 아무 동작도 수행하지 않는다.
-
-// 2. Navigation이 Protocol을 만족하지 않을 때
-//   - id<CLLocationManagerDelegate> delegate;
-
-// 3. @property(strong, nonatomic) id<CLLocationManagerDelegate> delegate;
-//   - strong을 지정하면 안됩니다.
-//     이벤트 핸들러에 의해 객체가 파괴되지 않을 수 있습니다.
-
-// 4. Objective-C protocol
-//    @required - 반드시 구현해야 한다.
-//    @optional - 구현하지 않아도 된다.
 
 int main() {
-  CLLocationManager* manager = [[CLLocationManager alloc] init];
-  Navigation* navi = [[Navigation alloc] init];
+  int x[10] = { 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
+  sort(x, 10);
   
-  manager.delegate = navi;
-  // navi = nil;
-  
-  [manager startUpdateLocation];
+  for (int i = 0 ; i < 10; i++) {
+    printf("%d\n", x[i]);
+  }
 }
-
-// Android - RecyclerView
-//             "Adapter Pattern"
-// Observer Pattern
-
-
-// iOS     - UITableView
-//             "Delegate / DataSource" - Delegate Pattern
-// "Notification Center"
-
-
-// Mobile
-// 1. Android - Kotlin
-// 2. iOS     - Swift
-
-// 3. Flutter - Dart
-//       Android / iOS / 'Web'
-
-// 5. Xamarin
-//       Android / iOS
-
-// 4. React Native - Web
-//       Android / iOS / Web
-
