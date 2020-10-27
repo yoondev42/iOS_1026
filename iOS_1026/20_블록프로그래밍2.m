@@ -26,5 +26,4 @@ int main() {
   [car go:42 block:^(int a, int b) {
     printf("block: %d, %d\n", a, b);
   }];
-  
 }
