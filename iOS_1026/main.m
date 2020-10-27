@@ -1,49 +1,50 @@
 
 #import <Foundation/Foundation.h>
+// 불변객체(Immutable Object)
+//   정의: 객체가 생성된 이후에 값이 변경되지 않는 객체
+//
+//  Java: String <- StringBuilder
+//        Integer, Long
+//        LocalDate, LocalDateTime
 
-// 리터럴 문법
-//  1. Objective C가 제공하는 Collection 사용 방법
+// 장점
+//   1. 상태가 변경되지 않기 때문에, 부수효과로 인한 버그로부터 안전하다.
+//   2. 스레드에 안전하다.
+//   3. 값이 변경되지 않기 때문에, 동일한 값을 가지는 객체를 공유해서 사용할 수 있다.
+
+// Objective-C Collection
+//   불변객체: NSString / NSArray / NSDictionary
+//   가변객체: NSMutableString / NSMutableArray / NSMutableDictionary
 
 int main() {
-  // 1. 문자열
-  NSString* s = @"Hello, ObjC";
-  NSLog(@"%@", s);
   
-  // 2. 배열
-  //   NSArray
-  //     id 타입을 여러개 보관할 수 있다.
-  //     문제점: 기본 타입(built-in)을 저장하는 것이 불가능하다.
-  //           래퍼 클래스가 필요하다.
-  //           Auto boxing / unboxing 을 지원하지 않습니다.
+  NSMutableDictionary* dic = [@{ @"name": @"Tom" } mutableCopy];
+  dic[@"age"] = @42;
+  NSLog(@"%@", dic[@"age"]);
   
-  NSArray* arr = [NSArray arrayWithObjects:
-                  [NSNumber numberWithInt:10],
-                  [NSNumber numberWithInt:20],
-                  [NSNumber numberWithInt:30], nil];
-  NSLog(@"%@", [arr objectAtIndex:0]);
+  [dic removeObjectForKey:@"name"];
+  NSLog(@"%@", dic[@"name"]);
   
-  // Objective C: 2.0 - Literal 문법 지원
-  NSArray* arr2 = @[ @10, @20, @30 ];
-  NSLog(@"%@", arr2[0]);   // [arr2 objectAtIndex:0];
+  // NSArray* arr = @[ @10, @20 ];
+  // arr[0] = @30;
+  NSMutableArray* arr = [@[ @10, @20 ] mutableCopy];
+  arr[0] = @30;
+  
+  [arr addObject:@100];
+
   
   
-  // 3. NSDictionary(= Map)
-  //  주의: value 부터 나열해야 한다.
-  NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                       @"Tom", @"name",
-                       @42, @"age",
-                       nil];
-  NSLog(@"%@", [dic objectForKey:@"name"]);
-  NSLog(@"%@", [dic objectForKey:@"age"]);
+  // NSString* s1 = @"AAA";
+  // NSMutableString* s1 = [NSMutableString stringWithString:@"AAA"];
+  NSMutableString* s1 = [@"AAA" mutableCopy];
   
-  //------------------------
+  //   NSRange: struct
+  // NSString*: class
   
-  NSDictionary* dic2 = @{
-    @"name" : @"Tom",
-    @"age" : @42
-  };
-  
-  NSLog(@"%@", dic2[@"name"]);
-  NSLog(@"%@", dic2[@"age"]);
-  
+  NSRange range = NSMakeRange(1, 2);
+  [s1 replaceCharactersInRange:range withString:@"BB"];
+  NSLog(@"%@", s1);
 }
+
+
+
