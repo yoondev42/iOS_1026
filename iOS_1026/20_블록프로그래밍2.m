@@ -5,7 +5,6 @@
 //    C: void (^f)(int a, int b)
 // ObjC: (void (^)(int a, int b))f
 
-
 @interface Car : NSObject
 
 - (void)go:(int)a block:(void (^)(int a, int b))block;
