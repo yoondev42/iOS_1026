@@ -1,6 +1,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <objc/message.h> // !!
+
 // KVC
 //  : Key-Value Coding
 //  => 객체의 프로퍼티의 이름을 키 값으로 해서, 프로퍼티의 값을 읽거나 변경하는 기술
@@ -37,7 +39,7 @@ int main() {
   user.age = 42;
   user.n = 100;
   
-  NSString* input = @"n2";
+  NSString* input = @"name";
   // 사용자로부터 입력을 받는다.
   // "age"를 입력받으면 user.age를 출력하고,
   // "name"을 입력받으면 user.name을 출력한다.
@@ -50,9 +52,14 @@ int main() {
   // 프로퍼티가 추가될 때마다 위의 코드는 계속 변경되어야 한다.
   // 프로퍼티를 사전처럼 접근할 수 있다면, 편리하다. - KVC
   
-  id value = [user valueForKey:input];
-  // name을 입력받으면, name 값을 준다.
-  // age를 입력받으면, age 값을 준다.
-  NSLog(@"%@", value);
+  
+  if (class_getProperty([user class], [input UTF8String])) {
+    id value = [user valueForKey:input];
+    // name을 입력받으면, name 값을 준다.
+    // age를 입력받으면, age 값을 준다.
+    NSLog(@"%@", value);
+  } else {
+    NSLog(@"%@ 프로퍼티가 존재하지 않습니다", input);
+  }
   
 }
