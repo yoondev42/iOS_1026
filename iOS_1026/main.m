@@ -43,10 +43,11 @@ int main() {
   
   // 블록은 함수를 인자로 전달할 수 없다.
   // sort(x, 10, cmp1);
-  int n = 42;
+  // int n = 0;          // capture by value
+  __block int n = 0;     // capture by reference
   
   sort(x, 10, ^int(int a, int b) {
-    printf("n: %d\n", n);
+    printf("n: %d\n", ++n);
     return a - b;
   });
   
