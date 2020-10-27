@@ -29,7 +29,7 @@ int main() {
   // ObjC의 문자열 클래스 - NSString
   // - ObjC의 모든 객체는 반드시 힙에 생성되어야 합니다.
   NSString *s2 = @"Hello, ObjC";
-  NSLog(@"%@", s2);
+  NSLog(@"k", s2);
 }
 
 
