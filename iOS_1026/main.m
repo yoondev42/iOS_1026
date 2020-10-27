@@ -49,6 +49,8 @@ void goo(NSString* className) {
   if (c) {
     Car* p = [[c alloc] init];
     [p go];
+  } else {
+    printf("해당 이름의 클래스 타입이 존재하지 않습니다.\n");
   }
 }
 
@@ -67,7 +69,7 @@ int main() {
   Car* p = [Truck new];
   foo(p);
   
-  goo(@"Car");
+  goo(@"Car2");
   
   
   // Class 얻는 방법 3가지
