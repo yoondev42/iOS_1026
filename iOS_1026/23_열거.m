@@ -37,8 +37,6 @@ int main() {
   [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL* stop) {
     NSLog(@"%@ -> %@", key, obj);
   }];
-  
-  
 }
 
 
