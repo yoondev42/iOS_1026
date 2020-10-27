@@ -1,6 +1,9 @@
 
 #import <Foundation/Foundation.h>
 
+// 1. 객체를 문자열로 출력할 때 - description
+
+
 @interface Person : NSObject
 @property(strong, nonatomic) NSString* name;
 @property(assign, nonatomic) int age;
@@ -10,6 +13,14 @@
 @end
 
 @implementation Person
+
+// 'Dictionary'로 만들고, descipriton을 사용하면 편리하다.
+- (NSString*)description {
+  return [@{
+    @"name": _name,
+    @"age": [NSNumber numberWithInt:_age],
+  } description];
+}
 
 - (id)initWithName:(NSString*)name age:(int)age {
   self = [super init];
@@ -30,6 +41,12 @@
 @end
 
 @implementation Company
+
+- (NSString*)description {
+  return [@{
+    @"person": _person,
+  } description];
+}
 
 - (id)initWithPerson:(Person*)person {
   self = [super init];
