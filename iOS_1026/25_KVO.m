@@ -54,5 +54,4 @@ int main() {
   [person removeObserver:label forKeyPath:@"name"];
   
   person.name = @"Bob";
-  
 }

@@ -6,10 +6,6 @@
 	objectVersion = 50;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		7A9853DA25480DB600669FB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9853D925480DB600669FB6 /* main.m */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		7A744338254648E800E5E6D8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -51,7 +47,7 @@
 		7A9782FB2546B56400CAD1B5 /* 12_프로퍼티속성정리.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "12_프로퍼티속성정리.m"; sourceTree = "<group>"; };
 		7A9783002546BA9100CAD1B5 /* 13_프로퍼티활용.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "13_프로퍼티활용.m"; sourceTree = "<group>"; };
 		7A9853D62548093800669FB6 /* 24_KVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = 24_KVC.m; sourceTree = "<group>"; };
-		7A9853D925480DB600669FB6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7A9853D925480DB600669FB6 /* 25_KVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = 25_KVO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +107,7 @@
 				7A1C12E02547FB7900855DFD /* 22_불변객체2.m */,
 				7A1C12E52548048C00855DFD /* 23_열거.m */,
 				7A9853D62548093800669FB6 /* 24_KVC.m */,
-				7A9853D925480DB600669FB6 /* main.m */,
+				7A9853D925480DB600669FB6 /* 25_KVO.m */,
 			);
 			path = iOS_1026;
 			sourceTree = "<group>";
@@ -172,7 +168,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A9853DA25480DB600669FB6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
