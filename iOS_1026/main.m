@@ -50,7 +50,9 @@ int main() {
               context:nil];
   
   person.name = @"Tom";
-  person.name = @"Bob";
   
+  [person removeObserver:label forKeyPath:@"name"];
+  
+  person.name = @"Bob";
   
 }
