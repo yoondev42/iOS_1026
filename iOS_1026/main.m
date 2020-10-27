@@ -1,107 +1,50 @@
-
 #import <Foundation/Foundation.h>
 
-// 다형성(Polymorphism)
-//  1. 상속 - 부모 타입을 기반으로 다형성을 구현한다.
-//  2. 덕 타이핑(Duck typing)
-//    - ObjC는 해당 다형성도 지원합니다. / Swift는 지원 X
-//    - 특정한 객체가 오리처럼 행동하면 오리로 봐야한다.
-
-@interface User : NSObject
-- (void)display;
-@end
-@implementation User
-- (void)display {
-  printf("User display\n");
-}
-@end
+// 셀렉터(Selector)
+//  : Objective C의 메소드를 참조하는 타입
+//  => C 함수 포인터: 함수를 참조하고, 실행 시간에 어떤 함수를 호출할 지 결정할 수 있다.
 
 @interface Car : NSObject
-- (void)display;
+- (void)go;
+- (void)foo;
 @end
+
 @implementation Car
-- (void)display {
-  printf("Car display\n");
+- (void)go {
+  printf("Car go\n");
 }
 
-@end
-
-@interface Shape : NSObject
-//- (void)display;
-@end
-@implementation Shape
-//- (void)display {
-//  printf("Shape display\n");
-//}
+- (void)foo {
+  printf("Car foo\n");
+}
 @end
 
 int main() {
-  User* user = [User new];
   Car* car = [Car new];
-  Shape* shape = [Shape new];
   
-  NSArray* arr = [NSArray arrayWithObjects:user, car, shape, nil];
-  for (int i = 0 ; i < arr.count; ++i) {
-    id p = [arr objectAtIndex:i];
-    
-    // p객체가 display 메소드를 제공하고 있는지 검사하는 코드
-    if ([p respondsToSelector:@selector(display)]) {
-      [p display];
-    }
-    
-    // 해당 객체가 수신된 메소드를 호출할 수 없을 경우, '런타임 오류가 발생'합니다.
-    // unrecognized selector
-  }
+  SEL s1 = @selector(go);
+  // s1 = @selector(foo);
+  
+  // PerformSelector may cause a leak because its selector is unknown
+  //  - ARC는 Selector를 통해 생성된 객체의 수명관리가 불가능하다.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+  [car performSelector:s1];
+#pragma clang diagnostic pop
+  
+  [car performSelector:s1];
 }
 
 
-//  1. 상속 - 부모 타입을 기반으로 다형성을 구현한다.
+
 #if 0
-@interface Shape : NSObject
-- (void)draw;
-@end
-@implementation Shape
-- (void)draw {
-  printf("Shape draw\n");
-}
-@end
-
-@interface XRect : Shape
-- (void)draw;
-@end
-@implementation XRect
-- (void)draw {
-  printf("Rect draw\n");
-}
-@end
-
-@interface XCircle : Shape
-- (void)draw;
-@end
-@implementation XCircle
-- (void)draw {
-  printf("Circle draw\n");
-}
-@end
-
-@interface XTriangle : Shape
-- (void)draw;
-@end
-@implementation XTriangle
-- (void)draw {
-  printf("Triangle draw\n");
-}
-@end
+int add(int a, int b) { return a + b; }
+int sub(int a, int b) { return a - b; }
 
 int main() {
-  XRect* rect = [[XRect alloc] init];
-  XCircle* circle = [[XCircle alloc] init];
-  XTriangle* triangle = [[XTriangle alloc] init];
-  NSArray* arr = [NSArray arrayWithObjects:rect, circle, triangle, nil];
+  int (*fp)(int, int) = &add;
+  // fp = &sub;
   
-  for (int i = 0 ; i < arr.count; ++i) {
-    Shape* s = [arr objectAtIndex:i];
-    [s draw];
-  }
+  printf("%d\n", fp(10, 20));
 }
 #endif
