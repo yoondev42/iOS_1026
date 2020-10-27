@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7A1C129B2547B7D200855DFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1C129A2547B7D200855DFD /* main.m */; };
+		7A1C129F2547C1D300855DFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1C129E2547C1D300855DFD /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,7 +27,8 @@
 		7A1C128C2547A33300855DFD /* 14_객체생성방법.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "14_객체생성방법.m"; sourceTree = "<group>"; };
 		7A1C12912547A75C00855DFD /* 15_Class.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = 15_Class.m; sourceTree = "<group>"; };
 		7A1C12952547B26A00855DFD /* 16_다형성.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "16_다형성.m"; sourceTree = "<group>"; };
-		7A1C129A2547B7D200855DFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7A1C129A2547B7D200855DFD /* 17_Selector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = 17_Selector.m; sourceTree = "<group>"; };
+		7A1C129E2547C1D300855DFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7A74433A254648E800E5E6D8 /* iOS_1026 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = iOS_1026; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A74433D254648E800E5E6D8 /* 1_시작.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "1_시작.m"; sourceTree = "<group>"; };
 		7A7443512546524800E5E6D8 /* 2_클래스기본문법.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "2_클래스기본문법.m"; sourceTree = "<group>"; };
@@ -91,7 +92,8 @@
 				7A1C128C2547A33300855DFD /* 14_객체생성방법.m */,
 				7A1C12912547A75C00855DFD /* 15_Class.m */,
 				7A1C12952547B26A00855DFD /* 16_다형성.m */,
-				7A1C129A2547B7D200855DFD /* main.m */,
+				7A1C129A2547B7D200855DFD /* 17_Selector.m */,
+				7A1C129E2547C1D300855DFD /* main.m */,
 			);
 			path = iOS_1026;
 			sourceTree = "<group>";
@@ -152,7 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A1C129B2547B7D200855DFD /* main.m in Sources */,
+				7A1C129F2547C1D300855DFD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
