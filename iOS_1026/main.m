@@ -38,9 +38,21 @@
 // 2. Introspection 활용
 //    - Class: 클래스 타입의 타입
 //   1) 런타임에 어떤 객체 타입인지 알고 싶다.
+//   2) 런타임에 특정한 타입의 객체를 생성하고 싶다.
+//     => 프레임워크는 사용자의 클래스의 이름을 알 수 없다.
+//        사용자의 클래스의 객체를 생성하고 프레임워크에 등록하기 위해서는
+//        사용자 클래스의 이름 또는 클래스 타입 객체를 전달해야 한다.
+
+void goo(NSString* className) {
+  // 문자열로 전달된 클래스를 생성해서, go 라는 메소드를 호출하고 싶다.
+  Class c = NSClassFromString(className);
+  if (c) {
+    Car* p = [[c alloc] init];
+    [p go];
+  }
+}
 
 void foo(Car* p) {
-  
   // p가 Truck이면 foo를 호출하고 싶다.
   if ([p class] == [Truck class]) {
     Truck* t = (Truck*)p;
@@ -48,13 +60,14 @@ void foo(Car* p) {
   } else {
     printf("p는 Truck이 아닙니다.\n");
   }
-
 }
 
 
 int main() {
   Car* p = [Truck new];
   foo(p);
+  
+  goo(@"Car");
   
   
   // Class 얻는 방법 3가지
@@ -87,7 +100,9 @@ int main() {
 #endif
 
 
-
-
-
+#if 0
+// Android - 동적 생성의 예제
+Intent intent = new Intent(this, MainActivity.class);
+startActivity(intent);
+#endif
 
