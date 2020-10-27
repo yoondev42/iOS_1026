@@ -1,59 +1,93 @@
+
 #import <Foundation/Foundation.h>
 
-// 객체 생성 방법 - Obj C
-// 1. ARC 원리: 컴파일러가 코드를 분석해서, 자동으로 메모리 관리 코드를 삽입한다.
-//             MRC: retain / release
-//             ARC: 컴파일러가 C 코드를 삽입한다. 더 빠르게 동작한다.
-// 2. 객체 생성 방법
-//    1) 2단계 생성 패턴: alloc + initXXX        - 컴파일러가 release 삽입
-//    2) 편의 생성자: stringXXX 또는 xxxString    - 컴파일러가 autorelease 삽입
+// Introspection: 내성, 자기성찰
+//   => "Reflection"과 동일한 개념
+//   : 실행 시간에 클래스의 정보 등을 탐색하는 목적으로 이용한다.
 
-
-@interface Person : NSObject
-@property(strong, nonatomic) NSString* name;
-
-- (id)initWithName:(NSString*)name;
-+ (Person*)personWithName:(NSString*)name;
-
+@interface Car : NSObject
+- (void)go;
 @end
 
-@implementation Person
+@implementation Car
+- (void)go {
+  printf("Car go\n");
+}
+@end
 
-// 지정 초기화 메소드
-- (id)initWithName:(NSString *)name {
-  self = [super init];
-  if (self) {
-    _name = name;
+@interface Truck : Car
+- (void)go;
+- (void)foo;
+@end
+
+@implementation Truck
+// Overriding
+- (void)go {
+  printf("Truck go\n");
+}
+
+- (void)foo {
+  printf("Truck foo\n");
+}
+@end
+
+// 1. ObjC의 메소드는 '동적 바인딩'을 합니다.
+//  => '런타임에 어떤 객체 타입'을 참조하는지 조사해서, 함수를 호출하는 것
+//       Java, C++(virtual)
+
+// 2. Introspection 활용
+//    - Class: 클래스 타입의 타입
+//   1) 런타임에 어떤 객체 타입인지 알고 싶다.
+
+void foo(Car* p) {
+  
+  // p가 Truck이면 foo를 호출하고 싶다.
+  if ([p class] == [Truck class]) {
+    Truck* t = (Truck*)p;
+    [t foo];
+  } else {
+    printf("p는 Truck이 아닙니다.\n");
   }
-  return self;
-}
 
-// 편의 생성자
-+ (Person *)personWithName:(NSString *)name {
-  return [[Person alloc] initWithName:name];
 }
-
-@end
 
 
 int main() {
+  Car* p = [Truck new];
+  foo(p);
   
-  @autoreleasepool {
-    // 문자열을 생성하는 방법 3가지
-    NSString* s1 = @"Hello";     // Literal
-    NSString* s2 = [[NSString alloc] initWithFormat:@"%@", s1];
-    NSString* s3 = [NSString stringWithFormat:@"%@", s2];
-    
-    NSLog(@"%@ %@ %@", s1, s2, s3);
-    
-    NSArray* arr1 = [[NSArray alloc] initWithObjects:@"A", @"B", nil];
-    NSArray* arr2 = [NSArray arrayWithObjects:@"A", @"B", nil];
-    
-    NSLog(@"%@ %@", arr1, arr2);
-    
-    Person* p1 = [[Person alloc] initWithName:@"Tom"];
-    Person* p2 = [Person personWithName:@"Tom"];
-    
-    NSLog(@"%@ %@", p1, p2);
-  }
+  
+  // Class 얻는 방법 3가지
+  // 1) 타입
+  // Class c1 = [Car class];
+  // Class c2 = [Truck class];
+
+  // Car* car = [[Car alloc] init];
+  // Truck* truck = [[Truck alloc] init];
+  // 2) 객체
+  // Class c3 = [car class];
+  // Class c4 = [truck class];
+  
+  // 3) 이름(문자열) - 실패 가능성
+  // Class c5 = NSClassFromString(@"Car");
+  // NSLog(@"%@", c5);
+  
 }
+
+
+
+#if 0
+int main() {
+  Car* p1 = [[Car alloc] init];
+  [p1 go];
+  
+  Car* p2 = [[Truck alloc] init];
+  [p2 go];
+}
+#endif
+
+
+
+
+
+
