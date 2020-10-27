@@ -12,7 +12,9 @@
 //    - 함수를 참조할 수 있다.
 //    - 함수를 인자로 전달하거나 함수를 반환할 수 있다.
 // 2) 익명 함수를 지원해야 한다.
-//    - Lambda(람다) / Closure(클로져)
+//    - Lambda(람다): 익명의 코드 조각을 참조하는 기술
+//    - Closure(클로져): 블록 외부의 변수를 암묵적으로(명시적으로) 참조하는 기술
+
 
 // Objective-C: [C + ObjC]
 //  : '블록 프로그래밍'은 ObjC의 문법이 아니라 C언어의 확장 문법입니다.
@@ -34,10 +36,17 @@ void sort(int* x, int n, int (^cmp)(int, int)) {
   }
 }
 
+int cmp1(int a, int b) { return a - b; }
+
 int main() {
   int x[10] = { 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
   
+  // 블록은 함수를 인자로 전달할 수 없다.
+  // sort(x, 10, cmp1);
+  int n = 42;
+  
   sort(x, 10, ^int(int a, int b) {
+    printf("n: %d\n", n);
     return a - b;
   });
   
