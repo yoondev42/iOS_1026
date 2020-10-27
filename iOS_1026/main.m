@@ -23,9 +23,43 @@ void swap(int* a, int* b) {
   *b = temp;
 }
 
+void sort(int* x, int n, int (^cmp)(int, int)) {
+  for (int i = 0 ; i < n - 1; i++) {
+    for (int j = i+1; j < n; j++) {
+      // if (x[i] < x[j]) {
+      if (cmp(x[i], x[j]) > 0) {
+        swap(&x[i], &x[j]);
+      }
+    }
+  }
+}
+
+int main() {
+  int x[10] = { 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
+  
+  sort(x, 10, ^int(int a, int b) {
+    return a - b;
+  });
+  
+  sort(x, 10, ^int(int a, int b) {
+    return b - a;
+  });
+  
+  
+  // sort(x, 10, &cmp2);
+  
+  for (int i = 0 ; i < 10; i++) {
+    printf("%d\n", x[i]);
+  }
+}
+
+
+#if 0
 // sort 함수의 오름차순 또는 내림차순의 정책은 사용자가 결정해야 한다.
 // => '정책'을 분리
 // => 함수 포인터 인자를 통해 정책을 사용자가 결정할 수 있도록 하자.
+// 함수 포인터
+//   문제점: "익명 함수를 전달할 수 없다"
 
 void sort(int* x, int n, int (*cmp)(int, int)) {
   for (int i = 0 ; i < n - 1; i++) {
@@ -52,6 +86,7 @@ int main() {
     printf("%d\n", x[i]);
   }
 }
+#endif
 
 
 #if 0
