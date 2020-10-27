@@ -4,8 +4,12 @@
 
 // Cocoa Design Pattern
 // 1. Target-Action Pattern
+
 // 2. Delegate Pattern
 //   => Interface 기반의 이벤트 처리 설계
+//    : 다른 객체의 변화에 대응하거나, 다른 객체의 행동에 변화를 줄 수 있는 패턴
+//     ex) xxxDelegate, xxxDataSource
+
 
 #if 0
 interface CLLocationManagerListener {
@@ -93,3 +97,27 @@ int main() {
   
   [manager startUpdateLocation];
 }
+
+// Android - RecyclerView
+//             "Adapter Pattern"
+// Observer Pattern
+
+
+// iOS     - UITableView
+//             "Delegate / DataSource" - Delegate Pattern
+// "Notification Center"
+
+
+// Mobile
+// 1. Android - Kotlin
+// 2. iOS     - Swift
+
+// 3. Flutter - Dart
+//       Android / iOS / 'Web'
+
+// 5. Xamarin
+//       Android / iOS
+
+// 4. React Native - Web
+//       Android / iOS / Web
+
