@@ -33,6 +33,11 @@ int main() {
     NSLog(@"%@ -> %@", key, obj);
   }
   
+  // Block 버전을 찾아서 구현해보세요.
+  [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL* stop) {
+    NSLog(@"%@ -> %@", key, obj);
+  }];
+  
   
 }
 
