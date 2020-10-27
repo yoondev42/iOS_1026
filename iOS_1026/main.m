@@ -3,7 +3,8 @@
 
 // 다형성(Polymorphism)
 //  1. 상속 - 부모 타입을 기반으로 다형성을 구현한다.
-//  2. 덕 타이핑(Duck typing)    - ObjC는 해당 다형성도 지원합니다.
+//  2. 덕 타이핑(Duck typing)
+//    - ObjC는 해당 다형성도 지원합니다. / Swift는 지원 X
 //    - 특정한 객체가 오리처럼 행동하면 오리로 봐야한다.
 
 @interface User : NSObject
@@ -26,12 +27,12 @@
 @end
 
 @interface Shape : NSObject
-- (void)display;
+//- (void)display;
 @end
 @implementation Shape
-- (void)display {
-  printf("Shape display\n");
-}
+//- (void)display {
+//  printf("Shape display\n");
+//}
 @end
 
 int main() {
@@ -42,8 +43,14 @@ int main() {
   NSArray* arr = [NSArray arrayWithObjects:user, car, shape, nil];
   for (int i = 0 ; i < arr.count; ++i) {
     id p = [arr objectAtIndex:i];
-    [p display];
+    
+    // p객체가 display 메소드를 제공하고 있는지 검사하는 코드
+    if ([p respondsToSelector:@selector(display)]) {
+      [p display];
+    }
+    
     // 해당 객체가 수신된 메소드를 호출할 수 없을 경우, '런타임 오류가 발생'합니다.
+    // unrecognized selector
   }
 }
 
