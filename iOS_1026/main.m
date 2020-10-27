@@ -27,7 +27,7 @@
 @end
 
 @interface User : NSObject
-- (void)go;
+- (void)go:(int)a;
 @end
 @implementation User
 // go - 고유번호: 10
