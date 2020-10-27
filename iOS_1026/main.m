@@ -8,6 +8,40 @@
 // 4. Block
 
 int main() {
+  NSDictionary* dic = @{
+    @"name": @"Tom",
+    @"age": @42
+  };
+  
+  // 1. Key 배열
+  NSArray* keys = [dic allKeys];
+  for (int i = 0 ; i < keys.count; ++i) {
+    id key = keys[i];
+    id obj = dic[key];
+    NSLog(@"%@ -> %@", key, obj);
+  }
+  
+  NSEnumerator* enumerator = [dic keyEnumerator];
+  id key;
+  while ((key = [enumerator nextObject]) != nil) {
+    id obj = dic[key];
+    NSLog(@"%@ -> %@", key, obj);
+  }
+  
+  for (id key in dic) {
+    id obj = dic[key];
+    NSLog(@"%@ -> %@", key, obj);
+  }
+  
+  
+}
+
+
+
+
+
+#if 0
+int main() {
   // 1. for
   NSArray* arr = @[ @10, @20, @30 ];
   for (int i = 0 ; i < arr.count ; ++i) {
@@ -30,6 +64,7 @@ int main() {
   //  : _Nonnull, _Nullable - Swift에서 타입 추론을 위한 태그 정보
   [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL* stop) {
     NSLog(@"%lu - %@", idx, obj);
+    *stop = TRUE;
   }];
-  
 }
+#endif
