@@ -4,6 +4,13 @@
 // KVC
 //  : Key-Value Coding
 //  => 객체의 프로퍼티의 이름을 키 값으로 해서, 프로퍼티의 값을 읽거나 변경하는 기술
+//  문제점
+//   - 잘못된 키 값을 전달하였을 경우, 예외가 발생합니다.
+//     this class is not key value coding-compliant for the key n2.
+
+// Cocoa Touch Framework
+//  => UI 컴포넌트의 참조와 코드를 연결할 때, KVC가 이용됩니다.
+
 
 // User* user = [[User alloc] initWithName:@"Tom" age:42];
 
@@ -30,7 +37,7 @@ int main() {
   user.age = 42;
   user.n = 100;
   
-  NSString* input = @"n";
+  NSString* input = @"n2";
   // 사용자로부터 입력을 받는다.
   // "age"를 입력받으면 user.age를 출력하고,
   // "name"을 입력받으면 user.name을 출력한다.
