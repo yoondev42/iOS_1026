@@ -72,6 +72,32 @@ if let n = n {
 var n2: Int = 10
 print(n2)
 
+// 반드시 NSObject의 자식일 필요가 없습니다.
+class User {
+  var name: String
+  var age: Int
+  
+  // 초기화 메소드
+  init(name: String, age: Int) {
+    self.name = name
+    self.age = age
+  }
+  
+  func go(address: String) {
+    
+  }
+  
+  func go(address: String, speed: Int) {
+    
+  }
+  
+}
+
+// User* user = [[User alloc] initWithName:@"Tom" age:42];
+
+var user = User(name: "Tom", age: 42)
+user.go(address: "Suwon")
+user.go(address: "Seoul", speed: 100)
 
 
 
