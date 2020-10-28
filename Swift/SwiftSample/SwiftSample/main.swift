@@ -1,50 +1,56 @@
 
 import Foundation
 
-// JSON: Javascript Object Notation
-#if false
-// {
-//    "name": "Tom",
-//    "age": 42,
-//    "height": 3.14
-// }
-#endif
+// Event Handling
+// 1. Target-Action
+// 2. Delegate
+// 3. Block Programming(ObjC) -> Swift Closure
 
-// id / NSObject  =>    Any
+// id  _target
+// SEL _action
+// [button addTarget:dialog action:@selector(close)];
 
-// Dictionary<String, Any> - JSON Object
-// [String:Any]
 
-func printJSON(_ json: [String:Any]) {
+// ObjC
+//   NSObject를 기반으로하는 클래스
 
-  // let v1: Any? = json["name"]
-  // let v2: String? = json["name"] as? String
+// Swift
+//   NSObject를 기반으로 하지 않습니다.
+//   - Any
+//     모든 Swift의 객채
+//   - AnyObject(=id)
+
+
+
+
+class UIButton {
+  private var target: AnyObject?
+  private var action: Selector?
   
-//  if let name = json["name"] as? String {
-//    if let age = json["age"] as? Int {
-//        print(name)
-//        print(age)
-//    }
-//  }
-  
-  // 아래의 중괄호를 없애기 위해서는 빠른 탈출 구문을 작성해야 한다.
-  // 빠른 탈출 구문 문제점
-  //  : 조건을 반대로 작성하는 부분에서 논리적인 오류가 발생할 수 있다.
-  //  해결: guard-else
-  
-  guard let name = json["name"] as? String,
-     let age = json["age"] as? Int else {
-    
-    return
+  func addTarget(_ target: AnyObject, action: Selector) {
+    self.target = target
+    self.action = action
   }
   
-  print(name) // String
-  print(age)  // Int
-
+  func click() {
+    
+    // [_target performSelector:_action];
+    _ = target?.perform(action)
+  }
 }
 
-let userJSON: [String:Any] = [
-  "name": "Tom",
-  "age": 42
-]
-printJSON(userJSON)
+class Dialog {
+  // 아래의 메소드를 Selector를 이용해서 호출하기 위해서는 반드시 objC의 메소드로 노출해야 한다.
+  @objc func close() {
+    print("Dialog close")
+  }
+}
+
+let button = UIButton()
+let dialog = Dialog()
+
+// [button addTarget:dialog action:@selector(close)];
+button.addTarget(dialog, action: #selector(Dialog.close))
+
+button.click()
+
