@@ -77,10 +77,16 @@ class User {
   var name: String
   var age: Int
   
+  static let N = 100
+  
   // 초기화 메소드
   init(name: String, age: Int) {
     self.name = name
     self.age = age
+  }
+  
+  static func display() {
+    
   }
   
   func go(address: String) {
@@ -91,6 +97,25 @@ class User {
     
   }
   
+  // user.add(a: 10, b: 20)
+  func add(a: Int, b: Int) -> Int {
+    return a + b
+  }
+  
+  // user.add(left: 10, right: 20)
+  func add(left a: Int, right b: Int) -> Int {
+    return a + b
+  }
+  
+  // user.add(10, 20)
+  func add(_ a: Int, _ b: Int) -> Int {
+    return a + b
+  }
+}
+
+// 전역 함수를 만들 수 있습니다.
+func sub(_ a: Int, _ b: Int) -> Int {
+  return a - b
 }
 
 // User* user = [[User alloc] initWithName:@"Tom" age:42];
@@ -98,6 +123,14 @@ class User {
 var user = User(name: "Tom", age: 42)
 user.go(address: "Suwon")
 user.go(address: "Seoul", speed: 100)
+
+// var result = user.add(a: 10, b: 20)
+// var result = user.add(left: 10, right: 20)
+var result = user.add(10, 20)
+result = sub(20, 10)
+
+User.display()
+print(User.N)
 
 
 
