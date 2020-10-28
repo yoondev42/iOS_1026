@@ -50,7 +50,7 @@ d["level"] = "10"
 // 0...10 : 0 ~ 10
 // 0..<10 : 0 ~ 9
 
-#if true
+#if false
 func sort(_ x: inout [Int], compare: (Int, Int) -> Bool) {
   
   for i in 0..<x.count - 1 {
@@ -100,4 +100,62 @@ fp = sub
 print(fp(10, 20))
 #endif
 
+//------------------
+func sort(_ x: inout [Int], compare: (Int, Int) -> Bool) {
+  
+  for i in 0..<x.count - 1 {
+    for j in i+1..<x.count {
+      
+      // if x[i] < x[j] {
+      if compare(x[i], x[j]) {
+        x.swapAt(i, j)
+      }
+    
+    }
+  }
+}
+
+func compare1(_ a: Int, _ b: Int) -> Bool {
+  return a > b
+}
+
+func compare2(_ a: Int, _ b: Int) -> Bool {
+  return a < b
+}
+
+var x = [ 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 ]
+
+// 1) 기존 함수를 참조하는 방법
+sort(&x, compare: compare2)
+
+//-----
+// 아래의 기술을 스위프트에서는 '클로저'라는 이름으로 부릅니다.
+
+// 2) 코드 블록(람다)를 전달하는 것도 가능합니다.
+sort(&x, compare: { (a: Int, b: Int) -> Bool in
+  return a < b
+})
+
+// 3) 람다의 타입을 추론 가능하므로, 타입 생략이 가능합니다.
+sort(&x, compare: { a, b in
+  return a < b
+})
+
+// 4) 람다의 블록이 코드 한 줄이라면, return 생략 가능합니다.
+sort(&x, compare: { a, b in
+  a < b
+})
+
+// 5) 인자의 이름을 생략하고, $0 $1 $2 등의 이름을 통해 인자를 참조할 수 있습니다.
+sort(&x, compare: {
+  $0 < $1
+})
+
+// 6) 함수의 마지막 인자가 함수인 경우, 람다의 코드 블록을 함수 호출의 괄호 밖으로 뺄 수 있습니다.
+sort(&x) {
+  $0 < $1
+}
+
+
+print(x)
 
