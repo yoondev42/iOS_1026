@@ -34,6 +34,8 @@ import Foundation
 //  1) var: 가변값
 //  2) let: 불변값
 
+
+#if false
 // 암시적 타입 추론: 우항의 타입을 통해 n의 타입을 컴파일 타임에 추론합니다.
 var n = 10
 
@@ -42,5 +44,28 @@ var n2: Int64 = 42
 
 // n += 10
 print(n)
+#endif
+
+// Optional
+// 1. Swift의 일반 타입은 기본적으로 nil을 가질 수 없습니다.
+// var n: String = nil  // compile error!
+
+// 2. nil을 변수에 대입하기 위해선, Optional 타입을 이용해야 합니다.
+//   Optional 타입: nil 가능성이 있는 변수 타입
+
+var n: Int? = 42
+// 위의 n 변수의 값을 읽기 위해서는 반드시 n이 nil이 아닌지 검증해야 합니다.
+
+if n != nil {
+  // print(n)       // Optional(42)
+  print(n!)         // 42
+}
+
+if let n = n {
+  print(n)         // 42
+}
+
+
+
 
 
