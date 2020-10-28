@@ -67,7 +67,6 @@ let error3: NetworkError = .internalServer(500, "서버에서 치명적인 오�
 
 // 연관된 값을 얻는 방법
 // 1. if-case 구문을 통해서 얻을 수 있다.
-
 func printError(_ error: NetworkError) {
 //  if case .invalidParameter(let message) = error {
 //    print(message)
@@ -77,13 +76,31 @@ func printError(_ error: NetworkError) {
 //    print("서버오류 - \(status):\(message)")
 //  }
   
-    if case let .invalidParameter(message) = error {
-      print(message)
-    } else if case let .timeout(sec) = error {
-      print("시간초과 - \(sec)")
-    } else if case let .internalServer(status, message) = error {
-      print("서버오류 - \(status):\(message)")
-    }
+//    if case let .invalidParameter(message) = error {
+//      print(message)
+//    } else if case let .timeout(sec) = error {
+//      print("시간초과 - \(sec)")
+//    } else if case let .internalServer(status, message) = error {
+//      print("서버오류 - \(status):\(message)")
+//    }
+  
+  switch error {
+  case .invalidParameter(let message):
+    print(message)
+  case .timeout(let sec):
+    print("시간초과 - \(sec)")
+  case .internalServer(let status, let message):
+    print("서버오류 - \(status):\(message)")
+  }
+  
+  switch error {
+  case let .invalidParameter(message):
+    print(message)
+  case let .timeout(sec):
+    print("시간초과 - \(sec)")
+  case let .internalServer(status, message):
+    print("서버오류 - \(status):\(message)")
+  }
 }
 
 printError(error1)
