@@ -15,8 +15,12 @@ import Foundation
 //       : Optional
 
 //  2) 성능(Fast)
-//  3) 표현성(Expressive)
+//     - Native 프로그래밍 언어
+//       C/C++
 
+//  3) 표현성(Expressive)
+//     - ObjC에서 작성하던 수많은 보일러플레이트가 제거되었다.
+//       간결하고 명확한 표현식
 
 // ObjC: 참조 타입(reference type) / 기본 타입(built-in type)
 
@@ -33,7 +37,6 @@ import Foundation
 //  : 타입 추론을 통해 변수를 생성할 수 있습니다.
 //  1) var: 가변값
 //  2) let: 불변값
-
 
 #if false
 // 암시적 타입 추론: 우항의 타입을 통해 n의 타입을 컴파일 타임에 추론합니다.
@@ -61,10 +64,13 @@ if n != nil {
   print(n!)         // 42
 }
 
+// Optional Binding
 if let n = n {
   print(n)         // 42
 }
 
+var n2: Int = 10
+print(n2)
 
 
 
