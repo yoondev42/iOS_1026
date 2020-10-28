@@ -22,7 +22,7 @@ import Foundation
 
 
 
-
+#if false
 class UIButton {
   private var target: AnyObject?
   private var action: Selector?
@@ -53,4 +53,77 @@ let dialog = Dialog()
 button.addTarget(dialog, action: #selector(Dialog.close))
 
 button.click()
+#endif
+
+// Delegate
+
+protocol UITableViewDelegate {
+  func tableView(_ tableView: UITableView, willSelectRowAt at: Int)
+  func tableView(_ tableView: UITableView, didSelectRowAt at: Int)
+  
+  func tableView(_ tableView: UITableView, willDeselectRowAt at: Int)
+  func tableView(_ tableView: UITableView, didDeselectRowAt at: Int)
+}
+
+class UITableView {
+  // @property id<UITableViewDelegate> delegate;
+  var delegate: UITableViewDelegate?
+  
+  func select(at: Int) {
+    delegate?.tableView(self, willSelectRowAt: at)
+    print("UITableView select - \(at)")
+    delegate?.tableView(self, didSelectRowAt: at)
+  }
+  
+  func deselect(at: Int) {
+    delegate?.tableView(self, willDeselectRowAt: at)
+    print("UITableView deselect - \(at)")
+    delegate?.tableView(self, didDeselectRowAt: at)
+  }
+}
+
+class ViewController : UITableViewDelegate {
+  func tableView(_ tableView: UITableView, willSelectRowAt at: Int) {
+    print("willSelectRowAt - \(at)")
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt at: Int) {
+    print("didSelectRowAt - \(at)")
+  }
+  
+  func tableView(_ tableView: UITableView, willDeselectRowAt at: Int) {
+    print("willDeselectRowAt - \(at)")
+  }
+  
+  func tableView(_ tableView: UITableView, didDeselectRowAt at: Int) {
+    print("didDeselectRowAt - \(at)")
+  }
+}
+
+let tableView = UITableView()
+let viewController = ViewController()
+
+tableView.delegate = viewController
+
+tableView.select(at: 10)
+tableView.deselect(at: 10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
