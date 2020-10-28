@@ -47,22 +47,57 @@ d["level"] = "10"
 // ObjC  - Block Programming
 // Swift
 
-func sort(_ x: inout [Int]) {
+// 0...10 : 0 ~ 10
+// 0..<10 : 0 ~ 9
+
+#if true
+func sort(_ x: inout [Int], compare: (Int, Int) -> Bool) {
   
   for i in 0..<x.count - 1 {
     for j in i+1..<x.count {
       
-      if x[i] < x[j] {
+      // if x[i] < x[j] {
+      if compare(x[i], x[j]) {
         x.swapAt(i, j)
       }
     
     }
   }
-  
+}
+
+func compare1(_ a: Int, _ b: Int) -> Bool {
+  return a > b
+}
+
+func compare2(_ a: Int, _ b: Int) -> Bool {
+  return a < b
 }
 
 var x = [ 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 ]
-sort(&x)
+sort(&x, compare: compare2)
 
 print(x)
+#endif
+
+
+#if false
+// 함수를 참조하는 방법
+//  - Swift에서 함수의 타입은 함수의 인자와 반환값에 의해 결정된다.
+
+// (Int, Int) -> Int
+func add(_ a: Int, _ b: Int) -> Int {
+  return a + b
+}
+
+// (Int, Int) -> Int
+func sub(_ a: Int, _ b: Int) -> Int {
+  return a - b
+}
+
+var fp: (Int, Int) -> Int = add
+fp = sub
+
+print(fp(10, 20))
+#endif
+
 
