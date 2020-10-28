@@ -1,88 +1,53 @@
+
 import Foundation
 
-// '참조 계수 기반'의 수명 관리
-//  => 참조 타입
-//  => Swift class
+// 초기화 메소드
+//  : 객체 생성시에 호출되는 함수
+//  1. Optional 타입이 아닌 프로퍼티는 반드시 초기화 메소드를 통해 초기화해주어야 한다.
 
-#if false
-class Image {
-  init() {
-    print("Image 객체 생성")
+class Car {
+  var speed: Int
+  var color: Int
+  
+  // - (id)initWithSpeed:(int)speed color:(int)color;     - ARC[release]
+  // + (Car*)carWithSpeed:(int)speed color:(int)color;    - ARC[autorelease]
+  
+  
+  // 편의 생성자 - 생성자 위임
+  //  => 지정 초기화를 메소드를 통해 객체를 생성하는 초기화 메소드
+  
+  convenience init(speed: Int) {
+    self.init(speed: speed, color: 0)
   }
   
-  // 소멸 블록
-  deinit {
-      print("Image 객체 파괴")
+  convenience init(color: Int) {
+    self.init(speed: 0, color: color)
   }
-}
-
-var image: Image? = Image()
-print("let image = Image()")
-
-image = nil
-print("image = nil")
-#endif
-
-#if false
-class Node {
-  // Strong reference
-  // var next: Node?
   
-  // Weak reference: auto niling을 지원하고 있습니다.
-  //  => weak은 Optional 타입에 대해서만 사용할 수 있습니다.
-  weak var next: Node?
+//  init(speed: Int) {
+//    self.speed = speed
+//    self.color = 0
+//  }
+//
+//  init(color: Int) {
+//    self.color = color
+//    self.speed = 0
+//  }
   
-  // unowned var next: Node?
-  
-  deinit {
-    print("Node 파괴")
+  // 아래는 편의 생성자가 아닙니다.
+  static func blue(speed: Int) -> Car {
+      return Car(speed: speed, color: 255)
   }
-}
-
-func foo() {
-  let n1 = Node()
-  let n2 = Node()
   
-  n1.next = n2
-  n2.next = n1
-}
-
-// foo()
-var n1: Node? = Node()
-
-let n2 = Node()
-n2.next = n1
-
-print(n2.next) // ?
-n1 = nil
-print(n2.next) // ?
-#endif
-
-// 생성 시간이 오래 걸린다.
-//   => Lazy Initialization(지연 초기화)
-//      - 처음 접근되는 시점에 생성하는 것이 좋다.
-class Image {
-  init() {
-    print("Image 객체 생성")
+  // 지정 초기화 메소드
+  init(speed: Int, color: Int) {
+    self.speed = speed
+    self.color = color
   }
 }
 
-class Person {
-  lazy var image: Image = Image()
-  
-  init() {
-    print("Person 객체 생성")
-  }
-}
-
-let person = Person()
-print("Person 객체 생성 후")
-print(person.image)
-
-
-
-
-
-
+var car = Car(speed: 10, color: 20)
+car = Car(color: 42)
+car = Car(speed: 100)
 
 
