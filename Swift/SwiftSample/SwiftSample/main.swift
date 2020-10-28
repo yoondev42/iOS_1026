@@ -57,7 +57,8 @@ button.click()
 
 // Delegate
 
-protocol UITableViewDelegate {
+// struct / class
+protocol UITableViewDelegate: AnyObject {
   func tableView(_ tableView: UITableView, willSelectRowAt at: Int)
   func tableView(_ tableView: UITableView, didSelectRowAt at: Int)
   
@@ -65,9 +66,18 @@ protocol UITableViewDelegate {
   func tableView(_ tableView: UITableView, didDeselectRowAt at: Int)
 }
 
-class UITableView {
-  // @property id<UITableViewDelegate> delegate;
-  var delegate: UITableViewDelegate?
+//@objc protocol UITableViewDelegate {
+//  @objc func tableView(_ tableView: UITableView, willSelectRowAt at: Int)
+//  @objc func tableView(_ tableView: UITableView, didSelectRowAt at: Int)
+//
+//  @objc func tableView(_ tableView: UITableView, willDeselectRowAt at: Int)
+//  @objc func tableView(_ tableView: UITableView, didDeselectRowAt at: Int)
+//}
+
+class UITableView: NSObject {
+  // @property(weak, nonatomic) id<UITableViewDelegate> delegate;
+  weak var delegate: UITableViewDelegate?
+  // delegate에 사용되는 클래스는 Reference Type 이어야 한다.
   
   func select(at: Int) {
     delegate?.tableView(self, willSelectRowAt: at)
