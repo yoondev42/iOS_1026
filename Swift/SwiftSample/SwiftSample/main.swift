@@ -1,95 +1,64 @@
-
 import Foundation
 
-// ObjC
-//   - 필드에 접근지정자를 제공하는 것은 가능하지만, 프로퍼티에 접근지정자를 제공할 수 없다.
-//   - 메소드에 접근지정자가 제공되지 않는다.
-
-// 프로퍼티
-//   @property(strong, nonatomic, readwrite) NSString* name;
-//   소유권 지정
-//      - strong
-//      - weak
-//      - unsafe_unretained  -  X
-//      - copy               -  X
-//   동기화 지정
-//      - atomic             -  X
-//      - nonatomic          -  X
-//   접근자 메소드
-//      - readonly
-//           let name -> getter
-//      - readwrite
-//           var name -> getter / setter
-
-// '프로퍼티': 접근자 메소드를 자동으로 생성하는 문법
+// '참조 계수 기반'의 수명 관리
+//  => 참조 타입
+//  => Swift class
 
 #if false
-class User {
-  // 프로퍼티 입니다.
-  var name: String
-  var age: Int
+class Image {
+  init() {
+    print("Image 객체 생성")
+  }
   
-  init(name: String, age: Int) {
-    self.name = name
-    self.age = age
+  // 소멸 블록
+  deinit {
+      print("Image 객체 파괴")
   }
 }
 
-let user = User(name: "Tom", age: 42)
+var image: Image? = Image()
+print("let image = Image()")
 
-user.name = "Bob"  // setter
-user.age = 16      // setter
-
-print(user.name)  // getter
-print(user.age)   // getter
+image = nil
+print("image = nil")
 #endif
 
-class Person {
-  // Type property
-  static var count: Int = 0
+class Node {
+  // Strong reference
+  // var next: Node?
   
-  // => Stored Property
-  var _firstName: String
+  // Weak reference: auto niling을 지원하고 있습니다.
+  //  => weak은 Optional 타입에 대해서만 사용할 수 있습니다.
+  weak var next: Node?
   
-  var firstName: String {
-    get {
-      return _firstName
-    }
-    set {
-      _firstName = newValue
-    }
-  }
+  // unowned var next: Node?
   
-  var lastName: String
-  
-  // Backing Field가 없는 프로퍼티
-  //  => Computed Property
-  var fullName: String {
-    get {
-      // 문자열을 조합하는 문법 - String Interpolation(보간)
-      return "\(firstName) \(lastName)"
-    }
-    
-    // set(value) {
-    set {
-      let arr = newValue.split(separator: " ")
-      firstName = "\(arr[0])"
-      lastName = "\(arr[1])"
-    }
-  }
-  
-  init(firstName: String, lastName: String) {
-    self._firstName = firstName
-    self.lastName = lastName
+  deinit {
+    print("Node 파괴")
   }
 }
 
-let person = Person(firstName: "Gildong", lastName: "Hong")
-print(person.fullName)
+func foo() {
+  let n1 = Node()
+  let n2 = Node()
+  
+  n1.next = n2
+  n2.next = n1
+}
 
-person.fullName = "Soonshin Lee"
-print(person.fullName)
+// foo()
+var n1: Node? = Node()
 
-Person.count += 3;
-print(Person.count)
+let n2 = Node()
+n2.next = n1
+
+print(n2.next) // ?
+n1 = nil
+print(n2.next) // ?
+
+
+
+
+
+
 
