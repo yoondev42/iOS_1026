@@ -10,7 +10,8 @@ import Foundation
 // 2. 사용자가 객체를 문자열로 표현하는 기능을 제공하지 않아도, 기본적으로 제공이 된다.
 
 
-class User {
+#if false
+class User : CustomStringConvertible {
   let name: String
   let age: Int
   
@@ -19,10 +20,22 @@ class User {
     self.age = age
   }
   
-//  func description() -> String {
-//    return "User - name=\(name) age=\(age)"
-//  }
+  var description: String {
+    get {
+      return "User(name=\(name), age=\(age))"
+    }
+  }
   
+  func move() {
+    print("User move")
+  }
+}
+#endif
+
+struct User {
+  let name: String
+  let age: Int
+    
   func move() {
     print("User move")
   }
@@ -31,3 +44,4 @@ class User {
 let user = User(name: "Tom", age: 42)
 user.move()
 print(user)
+
