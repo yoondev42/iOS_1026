@@ -4,7 +4,7 @@ import Foundation
 // 초기화 메소드
 //  : 객체 생성시에 호출되는 함수
 //  1. Optional 타입이 아닌 프로퍼티는 반드시 초기화 메소드를 통해 초기화해주어야 한다.
-
+#if false
 class Car {
   var speed: Int
   var color: Int
@@ -15,7 +15,6 @@ class Car {
   
   // 편의 생성자 - 생성자 위임
   //  => 지정 초기화를 메소드를 통해 객체를 생성하는 초기화 메소드
-  
   convenience init(speed: Int) {
     self.init(speed: speed, color: 0)
   }
@@ -49,5 +48,81 @@ class Car {
 var car = Car(speed: 10, color: 20)
 car = Car(color: 42)
 car = Car(speed: 100)
+#endif
+
+
+class Car {
+  var speed: Int
+  var color: Int
+
+  convenience init(speed: Int) {
+    self.init(speed: speed, color: 0)
+  }
+  
+  // 지정 초기화 메소드
+  init(speed: Int, color: Int) {
+    self.speed = speed
+    self.color = color
+  }
+}
+
+// 1. 자식 클래스가 초기화 메소드를 정의하지 않았다면, 부모의 초기화 메소드를 물려 받는다.
+//                                              - 지정 초기화 메소드 / 편의 생성자
+
+// 2. 자식 클래스가 초기화 메소드를 한개라도 구현하였다면, 부모의 추기화 메소드를 더 이상 물려 받지 않는다.
+
+// 3. 자식 클래스는 자식 클래스의 초기화 메소드에서 부모의 초기화 메소드를 명시적으로 호출해야 한다.
+//    1) 자신의 필드를 먼저 초기화한다.
+//    2) 부모의 지정 초기화 메소드를 통해 부모의 필드를 초기화한다.
+
+class Truck : Car {
+  var name: String
+
+  init(speed: Int, color: Int, name: String) {
+    self.name = name
+    super.init(speed: speed, color: color)
+  }
+}
+
+var truck = Truck(speed: 100, color: 20, name: "포터")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
