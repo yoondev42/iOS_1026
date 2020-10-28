@@ -45,8 +45,21 @@ print(user.age)   // getter
 #endif
 
 class Person {
+  // Type property
+  static var count: Int = 0
+  
   // => Stored Property
-  var firstName: String
+  var _firstName: String
+  
+  var firstName: String {
+    get {
+      return _firstName
+    }
+    set {
+      _firstName = newValue
+    }
+  }
+  
   var lastName: String
   
   // Backing Field가 없는 프로퍼티
@@ -57,6 +70,7 @@ class Person {
       return "\(firstName) \(lastName)"
     }
     
+    // set(value) {
     set {
       let arr = newValue.split(separator: " ")
       firstName = "\(arr[0])"
@@ -65,7 +79,7 @@ class Person {
   }
   
   init(firstName: String, lastName: String) {
-    self.firstName = firstName
+    self._firstName = firstName
     self.lastName = lastName
   }
 }
@@ -76,4 +90,6 @@ print(person.fullName)
 person.fullName = "Soonshin Lee"
 print(person.fullName)
 
+Person.count += 3;
+print(Person.count)
 
