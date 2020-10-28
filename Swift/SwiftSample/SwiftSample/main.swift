@@ -53,8 +53,14 @@ class Person {
   //  => Computed Property
   var fullName: String {
     get {
-      // 문자열을 조합하는 문법
+      // 문자열을 조합하는 문법 - String Interpolation(보간)
       return "\(firstName) \(lastName)"
+    }
+    
+    set {
+      let arr = newValue.split(separator: " ")
+      firstName = "\(arr[0])"
+      lastName = "\(arr[1])"
     }
   }
   
@@ -65,7 +71,9 @@ class Person {
 }
 
 let person = Person(firstName: "Gildong", lastName: "Hong")
+print(person.fullName)
 
+person.fullName = "Soonshin Lee"
 print(person.fullName)
 
 
