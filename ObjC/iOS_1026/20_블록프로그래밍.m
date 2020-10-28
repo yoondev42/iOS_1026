@@ -10,7 +10,7 @@
 // 함수형 언어 특징
 // 1) 함수를 일급 객체(시민)로 취급한다.
 //    - 함수를 참조할 수 있다.
-//    - 함수를 인자로 전달하거나 함수를 반환할 수 있다.
+//    - 함수를 인자로 전달하거나 함수를 반환할 수 있다. - 고차 함수
 // 2) 익명 함수를 지원해야 한다.
 //    - Lambda(람다): 익명의 코드 조각을 참조하는 기술
 //    - Closure(클로져): 블록 외부의 변수를 암묵적으로(명시적으로) 참조하는 기술
@@ -43,8 +43,8 @@ int main() {
   
   // 블록은 함수를 인자로 전달할 수 없다.
   // sort(x, 10, cmp1);
-  // int n = 0;          // capture by value
-  __block int n = 0;     // capture by reference
+  // int n = 0;          // capture by value(복사)
+  __block int n = 0;     // capture by reference(참조)
   
   sort(x, 10, ^int(int a, int b) {
     printf("n: %d\n", ++n);
@@ -119,3 +119,10 @@ int main() {
   }
 }
 #endif
+
+
+// Reactive extension - Rx
+// - RxJava
+// - RxKotlin
+// - RxSwift
+// ...

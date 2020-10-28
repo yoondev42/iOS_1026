@@ -53,6 +53,7 @@ void goo(NSString* className) {
   }
 }
 
+
 void foo(Car* p) {
   // p가 Truck이면 foo를 호출하고 싶다.
   if ([p class] == [Truck class]) {
