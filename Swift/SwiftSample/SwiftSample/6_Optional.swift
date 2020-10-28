@@ -3,7 +3,6 @@ import Foundation
 
 // Optional - 'enum'으로 구현되어 있습니다.
 
-
 // 1. enum 기본 사용법
 //   - enum은 값 타입입니다.
 #if false
@@ -42,7 +41,7 @@ printSchool(school: school)
 #if false
 // 2. enum은 원시값(rawValue)을 지원합니다.
 //  - Int, String, Double등의 값을 가질 수 있습니다.
-enum School : String {
+enum School: String {
   case primary = "Primary School"
   case elementary
   case middle
@@ -52,10 +51,8 @@ enum School : String {
 // let school = School.primary
 // print(school.rawValue)
 
-
 // 3. Swift enum의 가장 강력한 기능
 //    연관값(Associated Value)
-
 
 enum NetworkError {
   case invalidParameter(String)
@@ -77,7 +74,7 @@ func printError(_ error: NetworkError) {
 //  } else if case .internalServer(let status, let message) = error {
 //    print("서버오류 - \(status):\(message)")
 //  }
-  
+
 //    if case let .invalidParameter(message) = error {
 //      print(message)
 //    } else if case let .timeout(sec) = error {
@@ -85,16 +82,16 @@ func printError(_ error: NetworkError) {
 //    } else if case let .internalServer(status, message) = error {
 //      print("서버오류 - \(status):\(message)")
 //    }
-  
+
   switch error {
-  case .invalidParameter(let message):
+  case let .invalidParameter(message):
     print(message)
-  case .timeout(let sec):
+  case let .timeout(sec):
     print("시간초과 - \(sec)")
-  case .internalServer(let status, let message):
+  case let .internalServer(status, message):
     print("서버오류 - \(status):\(message)")
   }
-  
+
   switch error {
   case let .invalidParameter(message):
     print(message)
@@ -111,15 +108,15 @@ printError(error3)
 #endif
 
 // Optional
-//enum XOptional<T> {
+// enum XOptional<T> {
 //  case none
 //  case some(T)
-//}
+// }
 //
 // var p: XOptional<Int> = .some(42)
 // var p: Optional<Int> = .some(42)
 #if false
-var p: Int? = 42     // .some(42)
+var p: Int? = 42 // .some(42)
 
 switch p {
 case .none:
@@ -137,12 +134,11 @@ if let p = p {
 
 class User {
   var name: String = "Tom"
-  
+
   func hello() {
     print("User hello")
   }
 }
-
 
 // 1. User   - nil 가능성이 없는 타입
 // 2. User?  - nil 가능성이 있기 떄문에
@@ -153,7 +149,7 @@ class User {
 //    nil일 경우 예외로 인해 프로그램이 비정상 종료 한다.
 //  : 사용하지 않는 것이 좋다.
 
-var user: User! = nil
+var user: User!
 user.hello()
 
 #if false
@@ -172,6 +168,3 @@ if let name = user?.name {
 }
 
 #endif
-
-
-

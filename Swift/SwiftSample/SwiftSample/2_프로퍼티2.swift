@@ -9,10 +9,10 @@ class Image {
   init() {
     print("Image 객체 생성")
   }
-  
+
   // 소멸 블록
   deinit {
-      print("Image 객체 파괴")
+    print("Image 객체 파괴")
   }
 }
 
@@ -27,13 +27,13 @@ print("image = nil")
 class Node {
   // Strong reference
   // var next: Node?
-  
+
   // Weak reference: auto niling을 지원하고 있습니다.
   //  => weak은 Optional 타입에 대해서만 사용할 수 있습니다.
   weak var next: Node?
-  
+
   // unowned var next: Node?
-  
+
   deinit {
     print("Node 파괴")
   }
@@ -42,7 +42,7 @@ class Node {
 func foo() {
   let n1 = Node()
   let n2 = Node()
-  
+
   n1.next = n2
   n2.next = n1
 }
@@ -68,8 +68,8 @@ class Image {
 }
 
 class Person {
-  lazy var image: Image = Image()
-  
+  lazy var image = Image()
+
   init() {
     print("Person 객체 생성")
   }
@@ -78,11 +78,3 @@ class Person {
 let person = Person()
 print("Person 객체 생성 후")
 print(person.image)
-
-
-
-
-
-
-
-

@@ -61,12 +61,12 @@ var n: Int? = 42
 
 if n != nil {
   // print(n)       // Optional(42)
-  print(n!)         // 42
+  print(n!) // 42
 }
 
 // Optional Binding
 if let n = n {
-  print(n)         // 42
+  print(n) // 42
 }
 
 var n2: Int = 10
@@ -76,37 +76,30 @@ print(n2)
 class User {
   var name: String
   var age: Int
-  
+
   static let N = 100
-  
+
   // 초기화 메소드
   init(name: String, age: Int) {
     self.name = name
     self.age = age
   }
-  
-  static func display() {
-    
-  }
-  
-  func go(address: String) {
-    
-  }
-  
-  func go(address: String, speed: Int) {
-    
-  }
-  
+
+  static func display() {}
+
+  func go(address: String) {}
+  func go(address: String, speed: Int) {}
+
   // user.add(a: 10, b: 20)
   func add(a: Int, b: Int) -> Int {
     return a + b
   }
-  
+
   // user.add(left: 10, right: 20)
   func add(left a: Int, right b: Int) -> Int {
     return a + b
   }
-  
+
   // user.add(10, 20)
   func add(_ a: Int, _ b: Int) -> Int {
     return a + b
@@ -131,6 +124,3 @@ result = sub(20, 10)
 
 User.display()
 print(User.N)
-
-
-

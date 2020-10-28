@@ -28,7 +28,7 @@ class User {
   // 프로퍼티 입니다.
   var name: String
   var age: Int
-  
+
   init(name: String, age: Int) {
     self.name = name
     self.age = age
@@ -37,20 +37,20 @@ class User {
 
 let user = User(name: "Tom", age: 42)
 
-user.name = "Bob"  // setter
-user.age = 16      // setter
+user.name = "Bob" // setter
+user.age = 16 // setter
 
-print(user.name)  // getter
-print(user.age)   // getter
+print(user.name) // getter
+print(user.age) // getter
 #endif
 
 class Person {
   // Type property
   static var count: Int = 0
-  
+
   // => Stored Property
   var _firstName: String
-  
+
   var firstName: String {
     get {
       return _firstName
@@ -59,9 +59,9 @@ class Person {
       _firstName = newValue
     }
   }
-  
+
   var lastName: String
-  
+
   // Backing Field가 없는 프로퍼티
   //  => Computed Property
   var fullName: String {
@@ -69,7 +69,7 @@ class Person {
       // 문자열을 조합하는 문법 - String Interpolation(보간)
       return "\(firstName) \(lastName)"
     }
-    
+
     // set(value) {
     set {
       let arr = newValue.split(separator: " ")
@@ -77,7 +77,7 @@ class Person {
       lastName = "\(arr[1])"
     }
   }
-  
+
   init(firstName: String, lastName: String) {
     self._firstName = firstName
     self.lastName = lastName
@@ -90,6 +90,5 @@ print(person.fullName)
 person.fullName = "Soonshin Lee"
 print(person.fullName)
 
-Person.count += 3;
+Person.count += 3
 print(Person.count)
-

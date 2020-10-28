@@ -9,23 +9,20 @@ import Foundation
 
 // 2. 사용자가 객체를 문자열로 표현하는 기능을 제공하지 않아도, 기본적으로 제공이 된다.
 
-
 #if false
-class User : CustomStringConvertible {
+class User: CustomStringConvertible {
   let name: String
   let age: Int
-  
+
   init(name: String, age: Int) {
     self.name = name
     self.age = age
   }
-  
+
   var description: String {
-    get {
-      return "User(name=\(name), age=\(age))"
-    }
+    return "User(name=\(name), age=\(age))"
   }
-  
+
   func move() {
     print("User move")
   }
@@ -36,7 +33,7 @@ class User : CustomStringConvertible {
 struct User {
   let name: String
   let age: Int
-    
+
   func move() {
     print("User move")
   }
@@ -59,7 +56,7 @@ struct UserStruct {
 }
 
 // final User p1 = UserClass()
-let p1 = UserClass()  // Reference Type
+let p1 = UserClass() // Reference Type
 p1.age = 42
 
 let p2 = UserStruct() // Value Type
@@ -76,18 +73,16 @@ let p2 = UserStruct() // Value Type
 //      스택은 객체를 생성하고 파괴되는 비용이 없다.
 
 #if false
-struct User {
-
-}
+struct User {}
 
 func foo() {
-  var user: User? = User()   // 1
-  var user2: User? = user    // 2
+  var user: User? = User() // 1
+  var user2: User? = user // 2
   // class: 참조 복사(얕은 복사) - 참조 계수 관리
   // struct: 깊은 복사        - 참조 계수 관리 X
-  
-  user = nil                 // 1
-  user2 = nil                // 0
+
+  user = nil // 1
+  user2 = nil // 0
 }
 
 // foo()
@@ -99,12 +94,12 @@ func foo() {
 struct Point {
   var x: Int
   var y: Int
-  
+
   mutating func move(dx: Int, dy: Int) {
     x += dx
     y += dy
   }
-  
+
   func print() {
     Swift.print(self)
   }
@@ -114,26 +109,3 @@ let point = Point(x: 10, y: 20)
 
 // point.move(dx: 2, dy: 3)
 point.print()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

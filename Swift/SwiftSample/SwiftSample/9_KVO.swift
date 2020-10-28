@@ -13,12 +13,12 @@ class User {
     willSet {
       print("willSet - \(newValue)")
     }
-    
+
     didSet {
       print("didSet - \(oldValue) -> \(name)")
     }
   }
-  
+
   init(name: String) {
     self.name = name
   }
@@ -27,5 +27,3 @@ class User {
 let user = User(name: "Tom")
 user.name = "Bob"
 user.name = "Alice"
-
-

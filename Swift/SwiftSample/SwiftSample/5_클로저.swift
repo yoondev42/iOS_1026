@@ -23,12 +23,11 @@ print(a, b)
 //   1) 타입 안정성이 없다.                    => Swift Generic
 //   2) 불변 / 가변 클래스가 별도로 제공되었다.     => struct(var - 가변 / let - 불변)
 
-
 // Array<Int>    = [Int]
 // Array<String> = [String]
 
 // let x: Array<Int> = [ 1, 2, 3, 4, 5 ]
-let x: [Int] = [ 1, 2, 3, 4, 5 ]
+let x: [Int] = [1, 2, 3, 4, 5]
 // x.append(10)
 // x.append(20)
 // x[0] = 30
@@ -37,7 +36,7 @@ print(x)
 // Dictionary<String, String> = [String:String]
 // Dictionary<String, Int>    = [String:Int]
 
-var d: Dictionary<String, String> = [
+var d: [String: String] = [
   "name": "Tom",
   "address": "Suwon"
 ]
@@ -52,15 +51,12 @@ d["level"] = "10"
 
 #if false
 func sort(_ x: inout [Int], compare: (Int, Int) -> Bool) {
-  
   for i in 0..<x.count - 1 {
-    for j in i+1..<x.count {
-      
+    for j in i + 1..<x.count {
       // if x[i] < x[j] {
       if compare(x[i], x[j]) {
         x.swapAt(i, j)
       }
-    
     }
   }
 }
@@ -73,12 +69,11 @@ func compare2(_ a: Int, _ b: Int) -> Bool {
   return a < b
 }
 
-var x = [ 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 ]
+var x = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
 sort(&x, compare: compare2)
 
 print(x)
 #endif
-
 
 #if false
 // 함수를 참조하는 방법
@@ -100,17 +95,14 @@ fp = sub
 print(fp(10, 20))
 #endif
 
-//------------------
+// ------------------
 func sort(_ x: inout [Int], compare: (Int, Int) -> Bool) {
-  
   for i in 0..<x.count - 1 {
-    for j in i+1..<x.count {
-      
+    for j in i + 1..<x.count {
       // if x[i] < x[j] {
       if compare(x[i], x[j]) {
         x.swapAt(i, j)
       }
-    
     }
   }
 }
@@ -123,22 +115,22 @@ func compare2(_ a: Int, _ b: Int) -> Bool {
   return a < b
 }
 
-var x = [ 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 ]
+var x = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
 
 // 1) 기존 함수를 참조하는 방법
 sort(&x, compare: compare2)
 
-//-----
+// -----
 // 아래의 기술을 스위프트에서는 '클로저'라는 이름으로 부릅니다.
 
 // 2) 코드 블록(람다)를 전달하는 것도 가능합니다.
 sort(&x, compare: { (a: Int, b: Int) -> Bool in
-  return a < b
+  a < b
 })
 
 // 3) 람다의 타입을 추론 가능하므로, 타입 생략이 가능합니다.
 sort(&x, compare: { a, b in
-  return a < b
+  a < b
 })
 
 // 4) 람다의 블록이 코드 한 줄이라면, return 생략 가능합니다.
@@ -156,7 +148,6 @@ sort(&x) {
   $0 < $1
 }
 
-
 print(x)
 
 // Swift 가 기본적으로 제공하는 sort의 사용 방법
@@ -164,7 +155,7 @@ x.sort {
   $0 < $1
 }
 
-var x2 = [ "hello", "world", "show", "me", "the", "money" ]
+var x2 = ["hello", "world", "show", "me", "the", "money"]
 
 var result = x2.map { e -> Int in
   e.count
@@ -173,6 +164,3 @@ var result = x2.map { e -> Int in
 print(result)
 
 // print(x)
-
-
-
