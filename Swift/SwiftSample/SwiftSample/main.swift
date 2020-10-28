@@ -69,13 +69,21 @@ let error3: NetworkError = .internalServer(500, "서버에서 치명적인 오�
 // 1. if-case 구문을 통해서 얻을 수 있다.
 
 func printError(_ error: NetworkError) {
-  if case .invalidParameter(let message) = error {
-    print(message)
-  } else if case .timeout(let sec) = error {
-    print("시간초과 - \(sec)")
-  } else if case .internalServer(let status, let message) = error {
-    print("서버오류 - \(status):\(message)")
-  }
+//  if case .invalidParameter(let message) = error {
+//    print(message)
+//  } else if case .timeout(let sec) = error {
+//    print("시간초과 - \(sec)")
+//  } else if case .internalServer(let status, let message) = error {
+//    print("서버오류 - \(status):\(message)")
+//  }
+  
+    if case let .invalidParameter(message) = error {
+      print(message)
+    } else if case let .timeout(sec) = error {
+      print("시간초과 - \(sec)")
+    } else if case let .internalServer(status, message) = error {
+      print("서버오류 - \(status):\(message)")
+    }
 }
 
 printError(error1)
