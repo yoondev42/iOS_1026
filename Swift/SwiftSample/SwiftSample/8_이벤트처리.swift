@@ -119,7 +119,14 @@ tableView.select(at: 10)
 tableView.deselect(at: 10)
 
 
+// Swift
+// - ObjC는 거의 고려하지 않습니다.
+// - App을 만들때 사용하는 라이브러리의 대부분을 Swift 전용 라이브러리를 사용합니다.
 
+// Kotlin
+// - Java와의 상호 운용성이 뛰어납니다.
+// - Kotlin으로 앱을 개발할 때 자바의 라이브러리를 아직도 이용하고 있습니다.
+//   : OKHttp / Retrofit / Gson / Glide
 
 
 
