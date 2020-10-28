@@ -159,3 +159,20 @@ sort(&x) {
 
 print(x)
 
+// Swift 가 기본적으로 제공하는 sort의 사용 방법
+x.sort {
+  $0 < $1
+}
+
+var x2 = [ "hello", "world", "show", "me", "the", "money" ]
+
+var result = x2.map { e -> Int in
+  e.count
+}.sorted()
+
+print(result)
+
+// print(x)
+
+
+
