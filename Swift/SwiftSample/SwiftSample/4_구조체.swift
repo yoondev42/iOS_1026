@@ -90,7 +90,7 @@ func foo() {
   user2 = nil                // 0
 }
 
-foo()
+// foo()
 #endif
 
 // 6. 구조체의 메소드는 self를 불변으로 취급한다.
@@ -105,15 +105,15 @@ struct Point {
     y += dy
   }
   
-  func printPoint() {
-    print(self)
+  func print() {
+    Swift.print(self)
   }
 }
 
 let point = Point(x: 10, y: 20)
 
 // point.move(dx: 2, dy: 3)
-point.printPoint()
+point.print()
 
 
 

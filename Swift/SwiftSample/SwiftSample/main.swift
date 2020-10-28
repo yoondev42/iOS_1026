@@ -1,6 +1,7 @@
 
 import Foundation
 
+#if false
 // 1. 전달된 파라미터 인자는 불변으로 취급된다. - let
 // 2. inout 파라미터 - 참조(주소)로 전달됩니다
 func xswap(_ a: inout Int, _ b: inout Int) {
@@ -41,4 +42,27 @@ var d: Dictionary<String, String> = [
   "address": "Suwon"
 ]
 d["level"] = "10"
+#endif
+
+// ObjC  - Block Programming
+// Swift
+
+func sort(_ x: inout [Int]) {
+  
+  for i in 0..<x.count - 1 {
+    for j in i+1..<x.count {
+      
+      if x[i] < x[j] {
+        x.swapAt(i, j)
+      }
+    
+    }
+  }
+  
+}
+
+var x = [ 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 ]
+sort(&x)
+
+print(x)
 
