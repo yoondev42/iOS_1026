@@ -51,6 +51,7 @@ car = Car(speed: 100)
 #endif
 
 
+#if false
 class Car {
   var speed: Int
   var color: Int
@@ -85,6 +86,66 @@ class Truck : Car {
 }
 
 var truck = Truck(speed: 100, color: 20, name: "포터")
+#endif
+
+// User를 상속하는 모든 클래스는 반드시 init(name: String)을 제공해야 한다.
+class User {
+  var name: String
+  
+  required init(name: String) {
+    self.name = name
+  }
+}
+
+
+class Student : User {
+  var number: Int
+  
+  init(name: String, number: Int) {
+    self.number = number
+    super.init(name: name)
+  }
+  
+  // 부모 클래스가 요구하는 초기화 메소드를 반드시 제공해야 한다.
+  required init(name: String) {
+    self.number = 0
+    super.init(name: name)
+  }
+}
+
+// let student: Student? = Student()
+
+// 실패 가능한 초기화 메소드 - 객체 생성에 실패하였을 경우 nil을 반환한다(ObjC)
+class Computer {
+  var price: Int
+  
+  // 실패하였을 경우, nil을 반환하는 초기화 메소드
+  init?(price: Int) {
+    // price가 음수라면, 객체 생성에 실패해야 한다.
+    //  - 다른 언어: 예외를 발생해야 한다.
+    //  - Swift: 실패 가능한 초기화 메소드
+    if price < 0 {
+      return nil
+    }
+    
+    self.price = price
+  }
+}
+
+// 실패 가능한 초기화 메소드를 통해 객체를 사용할 경우, 반드시 Optional로 받아야 한다.
+var computer: Computer? = Computer(price: -10)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
