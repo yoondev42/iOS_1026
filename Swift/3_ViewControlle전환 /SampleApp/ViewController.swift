@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view.
   }
   
-  
   // 1. Cocoa Touch Class 추가
   //    - UIViewController의 자식 클래스로 추가
   //    - also create xib file [O]
@@ -36,6 +35,8 @@ class ViewController: UIViewController {
   @IBAction func onTouchStoryboard(_ sender: Any) {
     
   }
+  
+  @IBAction func unwind(segue: UIStoryboardSegue) {}
   
 }
 
