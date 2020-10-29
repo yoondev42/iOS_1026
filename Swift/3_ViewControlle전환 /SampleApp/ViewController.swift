@@ -34,6 +34,11 @@ class ViewController: UIViewController {
     })
   }
   
+  
+  @IBAction func onTouchStoryboard(_ sender: Any) {
+  
+  }
+  
   // 2. 전환 코드
   //  1) MyViewContrller 객체 생성
   //        presentViewController  /  present
@@ -48,7 +53,13 @@ class ViewController: UIViewController {
   //    특정한 데이터를 다음 컨트롤러에 전달하기 위해서는
   //   override func prepare(for segue: UIStoryboardSegue, sender: Any?) 함수를 통해 처리해야 한다.
   
+  #if false
+  var user: User?
   @IBAction func onTouchStoryboard(_ sender: Any) {
+    // let user = User(name: "Tom", age: 42)
+    user = User(name: "Tom", age: 42)
+    
+    
     // MySegue를 전환을 발동해야 합니다.
     performSegue(withIdentifier: "MySegue", sender: self)
   }
@@ -58,10 +69,28 @@ class ViewController: UIViewController {
     print("prepare")
     if (segue.identifier == "MySegue") {
       if let controller = segue.destination as? SecondViewController {
-        controller.user = User(name: "Tom", age: 42)
+        // controller.user = User(name: "Tom", age: 42)
+        controller.user = user
       }
     }
   }
+  #endif
   
   @IBAction func unwind(segue: UIStoryboardSegue) {}
 }
+
+// XIB
+// 1. 화면 하나당 별도의 XIB 파일이 필요하다.
+// 2. 컨트롤러 객체를 직접 생성하기 때문에, 데이터의 전달 등의 용이하다.
+
+
+// Storyboard
+//  1. 여러개의 ViewContrller을 하나의 파일을 통해 관리할 수 있다.
+//  2. 컨트롤러 객체의 생성이 프레임워크를 통해 이루어지기 때문에, 데이터의 전달 등을 위해서는 prepare를 통해 처리해야 한다.
+//  3. 하나의 스토리보드에 수많은 뷰 컨트롤러가 제공될 경우, 느리다.
+//       => 파일을 분리할 수 있다.
+//  4. Git - conflict를 해결하기 어렵다.
+
+// Storyboard를 사용할 때, Segue를 이용하면, 데이터 교환이 불편하다.
+//   => 편리하게 사용하는 방법이 있습니다.
+
