@@ -36,7 +36,9 @@ class ViewController: UIViewController {
   
   
   @IBAction func onTouchStoryboard(_ sender: Any) {
-  
+    let controller = SecondViewController.create()
+    controller.user = User(name: "Bob", age: 36)
+    present(controller, animated: true)
   }
   
   // 2. 전환 코드

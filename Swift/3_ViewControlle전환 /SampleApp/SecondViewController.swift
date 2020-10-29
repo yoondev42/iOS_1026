@@ -22,7 +22,8 @@ class SecondViewController: UIViewController {
   //  1) Storyboard ID: 자신 타입의 이름을 사용하도록 약속할 필요가 있습니다.
   static func create() -> SecondViewController {
     // Main.storyboard
+    // 2) Storyboard 객체를 이용해, 자기 자신의 ViewContrller를 직접 생성한다.
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    return storyboard.instantiateViewController(withIdentifier: "SecondController") as! SecondViewController
+    return storyboard.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
   }
 }
