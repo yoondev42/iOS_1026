@@ -17,14 +17,34 @@
   return TRUE;
 }
 
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+  printf("applicationDidEnterBackground\n");
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+  printf("applicationWillEnterForeground\n");
+}
+
 @end
 
 
 
 
+// AutoReleasePool이 한개 이상 제공되어야 합니다.
+
 int main(int argc, char* argv[]) {
   printf("Hello, iOS\n");
-  return UIApplicationMain(argc, argv, nil, @"AppDelegate");
+  
+  @autoreleasepool {
+    NSString* appDelegateClassName = NSStringFromClass([AppDelegate class]);
+    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
+  }
+  
+  // return UIApplicationMain(argc, argv, nil, @"AppDelegate");
+
+  // Class c = NSClassFromString(@"AppDelegate")
+  // id obj = [[c alloc] init];
+  
 }
 
 
@@ -34,4 +54,6 @@ int main(int argc, char* argv[]) {
 //          1) UIApplication 객체 생성
 //          2) AppDelegate 객체를 UIApplicetion 객체의 delegate로 연결
 //   => UIApplicationMain
+//          Info.plist를 기반으로 UIApplication객체를 생성하고,
+//          사용자가 정의한 클래스의 객체를 생성하고, UIApplication객체의 delegate로 등록합니다.
 
