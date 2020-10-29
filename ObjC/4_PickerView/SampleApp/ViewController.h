@@ -1,7 +1,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UIPickerViewDataSource>
+@interface ViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
 
 
 @property (strong, nonatomic) IBOutlet UIPickerView *pickerView;

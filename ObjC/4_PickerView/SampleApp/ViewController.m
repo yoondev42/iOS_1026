@@ -21,6 +21,7 @@
   self.animals = @[ @"사자", @"코끼리", @"뱀", @"늑대" ];
   
   _pickerView.dataSource = self;
+  _pickerView.delegate = self;
 }
 
 // returns the number of 'columns' to display.
