@@ -19,9 +19,10 @@
   // Do any additional setup after loading the view.
   
   self.animals = @[ @"사자", @"코끼리", @"뱀", @"늑대" ];
+  _nameLabel.text = _animals[0];
   
-  _pickerView.dataSource = self;
-  _pickerView.delegate = self;
+   _pickerView.dataSource = self;
+   _pickerView.delegate = self;
 }
 
 // returns the number of 'columns' to display.
@@ -29,6 +30,8 @@
 // returns the # of rows in each component..
 // - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
 
+
+#pragma mark - UIPickerViewDataSource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
   return 1;
 }
@@ -37,5 +40,14 @@
   return _animals.count;
 }
 
+#pragma mark - UIPickerViewDelegate
+// UIPickerViewDelegate
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+  return _animals[row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+  _nameLabel.text = _animals[row];
+}
 
 @end
