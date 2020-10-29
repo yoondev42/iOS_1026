@@ -23,5 +23,17 @@
   // Do any additional setup after loading the view.
 }
 
+// view에 새로운 view 추가하는 함수
+//  - addSubView
+//  - removeFromSuperview
+
+- (IBAction)onTouch:(id)sender {
+  [self.view addSubview:_childView];
+}
+
+- (IBAction)onTouch2:(id)sender {
+  [_childView removeFromSuperview];
+}
+
 
 @end
