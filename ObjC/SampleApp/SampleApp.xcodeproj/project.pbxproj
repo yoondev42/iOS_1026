@@ -12,6 +12,7 @@
 		7A237093254A5CF400402BA3 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A237092254A5CF400402BA3 /* View.xib */; };
 		7A237098254A674200402BA3 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A237096254A674200402BA3 /* FirstViewController.m */; };
 		7A237099254A674200402BA3 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A237097254A674200402BA3 /* FirstViewController.xib */; };
+		7A23709C254A694100402BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A23709B254A694100402BA3 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		7A237095254A674200402BA3 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		7A237096254A674200402BA3 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		7A237097254A674200402BA3 /* FirstViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
+		7A23709B254A694100402BA3 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				7A237095254A674200402BA3 /* FirstViewController.h */,
 				7A237096254A674200402BA3 /* FirstViewController.m */,
 				7A237097254A674200402BA3 /* FirstViewController.xib */,
+				7A23709B254A694100402BA3 /* Main.storyboard */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 				7A237093254A5CF400402BA3 /* View.xib in Resources */,
 				7A237099254A674200402BA3 /* FirstViewController.xib in Resources */,
 				7A237080254A4D7B00402BA3 /* Assets.xcassets in Resources */,
+				7A23709C254A694100402BA3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

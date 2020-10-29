@@ -5,6 +5,29 @@
 #import "FirstViewController.h"
 
 
+// iOS는 하나의 화면을 다루는 것이 아니라, 여러개의 화면을 만들 수 있는
+// Storyboard가 도입되었습니다. - iOS 5
+//   구조적인 변경 전
+//         UIApplicationMain
+//              - UIApplication
+//                   delegate - AppDelegate
+//                                 - UIWindow* window
+//                                         - rootViewController - ViewController
+
+
+//   구조적인 변경 후
+//         UIApplicationMain
+//              - UIApplication
+//                   delegate - AppDelegate
+// 아래 구현에 대한 부분이 프레임워크 내부에서 처리하는 형태로 변경되었습니다.
+//---------
+//                                 - UIWindow* window
+//                                         - rootViewController - ViewController
+//---------
+
+
+
+
 // ViewController 도입합시다.
 @interface ViewController : UIViewController
 @end
@@ -35,7 +58,15 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
+  printf("didFinishLaunchingWithOptions\n");
 
+  return TRUE;
+}
+
+
+
+#if 0
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
   printf("didFinishLaunchingWithOptions\n");
   
@@ -53,14 +84,12 @@
   _window.rootViewController = [[FirstViewController alloc] init];
 
   
-  
-  
-  
   // 3. Window 객체를 등록하고 화면에 뿌려준다.
   [_window makeKeyAndVisible];
   
   return TRUE;
 }
+#endif
 
 
 
