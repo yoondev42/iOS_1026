@@ -50,4 +50,8 @@
   _nameLabel.text = _animals[row];
 }
 
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+  return 64.0;
+}
+
 @end
