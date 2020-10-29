@@ -85,7 +85,6 @@ class ViewController: UIViewController {
 // 1. 화면 하나당 별도의 XIB 파일이 필요하다.
 // 2. 컨트롤러 객체를 직접 생성하기 때문에, 데이터의 전달 등의 용이하다.
 
-
 // Storyboard
 //  1. 여러개의 ViewContrller을 하나의 파일을 통해 관리할 수 있다.
 //  2. 컨트롤러 객체의 생성이 프레임워크를 통해 이루어지기 때문에, 데이터의 전달 등을 위해서는 prepare를 통해 처리해야 한다.
@@ -96,3 +95,7 @@ class ViewController: UIViewController {
 // Storyboard를 사용할 때, Segue를 이용하면, 데이터 교환이 불편하다.
 //   => 편리하게 사용하는 방법이 있습니다.
 
+
+//        <iOS 5>     <iOS 13>
+// XIB -> Storyboard -> Swift UI
+//                    Jetpack compose(Android)
