@@ -35,11 +35,13 @@ class ViewController: UIViewController {
     // controller.nameLabel.text = "Tom"
     // controller.ageLabel.text = "42"
     
+    // 데이터를 전달한다.
+    controller.user = User(name: "Tom", age: 42)
     
     present(controller, animated: true, completion: {
       print("present 완료")
-      controller.nameLabel.text = "Tom"
-      controller.ageLabel.text = "42"
+      // controller.nameLabel.text = "Tom"
+      // controller.ageLabel.text = "42"
     })
   }
   
