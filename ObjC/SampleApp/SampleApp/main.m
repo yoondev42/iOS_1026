@@ -2,6 +2,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "FirstViewController.h"
 
 
 // ViewController 도입합시다.
@@ -9,14 +10,14 @@
 @end
 
 @implementation ViewController
--(void)loadView {
-  printf("loadView\n");
-  NSBundle* bundle = [NSBundle mainBundle];
-  NSArray* arr = [bundle loadNibNamed:@"View" owner:nil options:nil];
-  UIView* v = arr[0];
-  
-  self.view = v;   // !!!!!
-}
+//-(void)loadView {
+//  printf("loadView\n");
+//  NSBundle* bundle = [NSBundle mainBundle];
+//  NSArray* arr = [bundle loadNibNamed:@"View" owner:nil options:nil];
+//  UIView* v = arr[0];
+//
+//  self.view = v;   // !!!!!
+//}
 @end
 
 
@@ -47,8 +48,13 @@
   
   
   // iOS 12 이후로는 아래 코드가 없으면 동작하지 않습니다.
-  _window.rootViewController = [[ViewController alloc] init];
+  // _window.rootViewController = [[ViewController alloc] init];
+  
+  _window.rootViewController = [[FirstViewController alloc] init];
 
+  
+  
+  
   
   // 3. Window 객체를 등록하고 화면에 뿌려준다.
   [_window makeKeyAndVisible];
@@ -95,7 +101,8 @@
   
   
   // iOS 12 이후로는 아래 코드가 없으면 동작하지 않습니다.
-  _window.rootViewController = [[UIViewController alloc] init];
+   _window.rootViewController = [[UIViewController alloc] init];
+  
 
   
   //-------

@@ -10,6 +10,8 @@
 		7A237080254A4D7B00402BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A23707F254A4D7B00402BA3 /* Assets.xcassets */; };
 		7A237090254A4EF500402BA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A23708F254A4EF400402BA3 /* main.m */; };
 		7A237093254A5CF400402BA3 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A237092254A5CF400402BA3 /* View.xib */; };
+		7A237098254A674200402BA3 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A237096254A674200402BA3 /* FirstViewController.m */; };
+		7A237099254A674200402BA3 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A237097254A674200402BA3 /* FirstViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,9 @@
 		7A237084254A4D7B00402BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A23708F254A4EF400402BA3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7A237092254A5CF400402BA3 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		7A237095254A674200402BA3 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		7A237096254A674200402BA3 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		7A237097254A674200402BA3 /* FirstViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +59,9 @@
 				7A237084254A4D7B00402BA3 /* Info.plist */,
 				7A23708F254A4EF400402BA3 /* main.m */,
 				7A237092254A5CF400402BA3 /* View.xib */,
+				7A237095254A674200402BA3 /* FirstViewController.h */,
+				7A237096254A674200402BA3 /* FirstViewController.m */,
+				7A237097254A674200402BA3 /* FirstViewController.xib */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -115,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A237093254A5CF400402BA3 /* View.xib in Resources */,
+				7A237099254A674200402BA3 /* FirstViewController.xib in Resources */,
 				7A237080254A4D7B00402BA3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A237090254A4EF500402BA3 /* main.m in Sources */,
+				7A237098254A674200402BA3 /* FirstViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
