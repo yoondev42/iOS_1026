@@ -20,7 +20,7 @@
   
   // 2. UIWindow 객체를 생성한다.
   self.window = [[UIWindow alloc] initWithFrame:rect];
-  _window.backgroundColor = [UIColor greenColor];
+  _window.backgroundColor = [UIColor whiteColor];
   
   
   // iOS 12 이후로는 아래 코드가 없으면 동작하지 않습니다.
@@ -33,6 +33,8 @@
   
   [_window addSubview:button];
   
+  UISwitch* sw = [[UISwitch alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+  [_window addSubview:sw];
   
   
   // 3. Window 객체를 등록하고 화면에 뿌려준다.
