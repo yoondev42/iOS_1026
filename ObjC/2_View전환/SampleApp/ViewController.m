@@ -28,12 +28,26 @@
 //  - removeFromSuperview
 
 - (IBAction)onTouch:(id)sender {
+  
+  [UIView beginAnimations:nil context:nil];
+  
+  [UIView setAnimationDuration:1];
+  [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp
+                         forView:self.view
+                           cache:YES];
+  
   [self.view addSubview:_childView];
+  
+  
+  [UIView commitAnimations];
 }
 
 - (IBAction)onTouch2:(id)sender {
   [_childView removeFromSuperview];
 }
+
+
+
 
 
 @end
