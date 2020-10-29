@@ -2,6 +2,30 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
+
+// ViewController 도입합시다.
+@interface ViewController : UIViewController
+@end
+
+@implementation ViewController
+-(void)loadView {
+  printf("loadView\n");
+  NSBundle* bundle = [NSBundle mainBundle];
+  NSArray* arr = [bundle loadNibNamed:@"View" owner:nil options:nil];
+  UIView* v = arr[0];
+  
+  self.view = v;   // !!!!!
+}
+@end
+
+
+
+
+
+
+
+
 @interface AppDelegate : NSObject<UIApplicationDelegate>
 
 @property(strong, nonatomic) UIWindow* window;
@@ -10,9 +34,41 @@
 
 @implementation AppDelegate
 
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
+  printf("didFinishLaunchingWithOptions\n");
+  
+  UIScreen* mainScreen = [UIScreen mainScreen];
+  CGRect rect = [mainScreen bounds];
+  printf("width=%lf height=%lf\n", rect.size.width, rect.size.height);
+  
+  self.window = [[UIWindow alloc] initWithFrame:rect];
+  _window.backgroundColor = [UIColor whiteColor];
+  
+  
+  // iOS 12 이후로는 아래 코드가 없으면 동작하지 않습니다.
+  _window.rootViewController = [[ViewController alloc] init];
+
+  
+  // 3. Window 객체를 등록하고 화면에 뿌려준다.
+  [_window makeKeyAndVisible];
+  
+  return TRUE;
+}
+
+
+
+
+
+
+
+
+
+
 //
 //  Windows: exe / dll / resource -> Installer
 //  macOS: 실행파일 / resource      -> Bundle
+
 
 
 // 문제점
@@ -20,7 +76,11 @@
 //     해결: Interface Builder를 통해 쉽게 UI를 만들 수 있다.
 //        - View.xib 파일 생성
 //          : xib를 빌드하면 nib가 된다.
+//  2) Window에 View를 등록해서 사용할 경우, 각 UI 컴포넌트는 이벤트에 반응하지 않습니다.
+//      - 각 UI 컴포넌트에 대해서 이벤트를 처리하기 위해서는
+//        ViewController가 필요합니다.
 
+#if 0
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
   printf("didFinishLaunchingWithOptions\n");
   
@@ -54,6 +114,7 @@
   
   return TRUE;
 }
+#endif
 
 
 
@@ -73,6 +134,7 @@
   
   // iOS 12 이후로는 아래 코드가 없으면 동작하지 않습니다.
   _window.rootViewController = [[UIViewController alloc] init];
+  
 
   //----------
   UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoDark];
@@ -163,3 +225,9 @@ int main(int argc, char* argv[]) {
 //      - iOS는 1개의 UIWindow를 가집니다.
 //         : iOS 13 이후로는 여러개의 윈도우를 가질 수 있습니다.
 //      - UIWindow를 생성하고 관리하는 책임 AppDelegate에 있습니다
+
+//       UIApplication
+//            delegate - AppDelegate
+//                           - UIWindow* window
+//                                  rootViewController - ViewController
+//                                                        - UIView* view
