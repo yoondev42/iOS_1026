@@ -3,9 +3,20 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : NSObject<UIApplicationDelegate>
+
+// Application 구동이 완료된 후에 호출되는 함수
+
+
 @end
 
 @implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
+  printf("didFinishLaunchingWithOptions\n");
+  
+  return TRUE;
+}
+
 @end
 
 
