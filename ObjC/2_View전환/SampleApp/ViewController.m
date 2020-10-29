@@ -27,6 +27,25 @@
 //  - addSubView
 //  - removeFromSuperview
 
+
+- (IBAction)onTouch:(id)sender {
+  
+  _childView.frame = CGRectMake(0, 0, 0, 0);
+  _childView.transform = CGAffineTransformMakeRotation(3.14); // 180도 회전
+  
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:1];
+  
+  [self.view addSubview:_childView];
+  
+  _childView.frame = self.view.frame;
+  _childView.transform = CGAffineTransformMakeRotation(0);  
+  
+  [UIView commitAnimations];
+}
+
+
+#if 0
 - (IBAction)onTouch:(id)sender {
   
   [UIView beginAnimations:nil context:nil];
@@ -41,9 +60,19 @@
   
   [UIView commitAnimations];
 }
+#endif
 
 - (IBAction)onTouch2:(id)sender {
+  [UIView beginAnimations:nil context:nil];
+  
+  [UIView setAnimationDuration:1];
+  [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown
+                         forView:self.view
+                           cache:YES];
+  
   [_childView removeFromSuperview];
+  
+  [UIView commitAnimations];
 }
 
 
