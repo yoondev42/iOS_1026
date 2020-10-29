@@ -10,6 +10,17 @@
 
 @implementation AppDelegate
 
+//
+//  Windows: exe / dll / resource -> Installer
+//  macOS: 실행파일 / resource      -> Bundle
+
+
+// 문제점
+//  1) 코드를 통해 UI를 추가하고 관리하는 것은 힘들다.
+//     해결: Interface Builder를 통해 쉽게 UI를 만들 수 있다.
+//        - View.xib 파일 생성
+//          : xib를 빌드하면 nib가 된다.
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
   printf("didFinishLaunchingWithOptions\n");
   
@@ -27,6 +38,43 @@
   _window.rootViewController = [[UIViewController alloc] init];
 
   
+  //-------
+  // 1) Bundle에서 View.xib가 빌드된 View.nib를 찾아야 합니다.
+  NSBundle* bundle = [NSBundle mainBundle];
+  NSArray* arr = [bundle loadNibNamed:@"View" owner:nil options:nil];
+  UIView* v = arr[0];
+  
+  // 2) 찾은 View를 Window에 등록합니다.
+  [_window addSubview:v];
+  
+  
+  //-------
+  // 3. Window 객체를 등록하고 화면에 뿌려준다.
+  [_window makeKeyAndVisible];
+  
+  return TRUE;
+}
+
+
+
+#if 0
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
+  printf("didFinishLaunchingWithOptions\n");
+  
+  // 1. 화면 해상도를 얻어온다.
+  UIScreen* mainScreen = [UIScreen mainScreen];
+  CGRect rect = [mainScreen bounds];
+  printf("width=%lf height=%lf\n", rect.size.width, rect.size.height);
+  
+  // 2. UIWindow 객체를 생성한다.
+  self.window = [[UIWindow alloc] initWithFrame:rect];
+  _window.backgroundColor = [UIColor whiteColor];
+  
+  
+  // iOS 12 이후로는 아래 코드가 없으면 동작하지 않습니다.
+  _window.rootViewController = [[UIViewController alloc] init];
+
+  //----------
   UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   CGRect rect2 = CGRectMake(10, 100, 100, 100);
   button.frame = rect2;
@@ -35,6 +83,7 @@
   
   UISwitch* sw = [[UISwitch alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
   [_window addSubview:sw];
+  //-----------
   
   
   // 3. Window 객체를 등록하고 화면에 뿌려준다.
@@ -42,7 +91,7 @@
   
   return TRUE;
 }
-
+#endif
 
 // Step 1. Window 생성
 // Application 구동이 완료된 후에 호출되는 함수
