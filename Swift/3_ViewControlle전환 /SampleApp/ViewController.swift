@@ -29,7 +29,18 @@ class ViewController: UIViewController {
     
     let controller = MyViewController()
     controller.modalPresentationStyle = .fullScreen
-    present(controller, animated: true, completion: nil)
+    
+    // - 아래처럼 사용하면 안됩니다.
+    //   이유: viewDidLoad가 호출되기 전에는 View에 접근이 불가능하다.
+    // controller.nameLabel.text = "Tom"
+    // controller.ageLabel.text = "42"
+    
+    
+    present(controller, animated: true, completion: {
+      print("present 완료")
+      controller.nameLabel.text = "Tom"
+      controller.ageLabel.text = "42"
+    })
   }
   
   @IBAction func onTouchStoryboard(_ sender: Any) {
