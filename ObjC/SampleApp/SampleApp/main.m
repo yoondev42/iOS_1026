@@ -10,7 +10,41 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
+  printf("didFinishLaunchingWithOptions\n");
+  
+  // 1. 화면 해상도를 얻어온다.
+  UIScreen* mainScreen = [UIScreen mainScreen];
+  CGRect rect = [mainScreen bounds];
+  printf("width=%lf height=%lf\n", rect.size.width, rect.size.height);
+  
+  // 2. UIWindow 객체를 생성한다.
+  self.window = [[UIWindow alloc] initWithFrame:rect];
+  _window.backgroundColor = [UIColor greenColor];
+  
+  
+  // iOS 12 이후로는 아래 코드가 없으면 동작하지 않습니다.
+  _window.rootViewController = [[UIViewController alloc] init];
+
+  
+  UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoDark];
+  CGRect rect2 = CGRectMake(10, 100, 100, 100);
+  button.frame = rect2;
+  
+  [_window addSubview:button];
+  
+  
+  
+  // 3. Window 객체를 등록하고 화면에 뿌려준다.
+  [_window makeKeyAndVisible];
+  
+  return TRUE;
+}
+
+
+// Step 1. Window 생성
 // Application 구동이 완료된 후에 호출되는 함수
+#if 0
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
   printf("didFinishLaunchingWithOptions\n");
   
@@ -33,6 +67,7 @@
   
   return TRUE;
 }
+#endif
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
   printf("applicationDidEnterBackground\n");
