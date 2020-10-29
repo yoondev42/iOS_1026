@@ -8,9 +8,9 @@ import Foundation
 // 프로퍼티
 //   @property(strong, nonatomic, readwrite) NSString* name;
 //   소유권 지정
-//      - strong
-//      - weak               -  weak
-//      - unsafe_unretained  -  unowned
+//      - strong             -  var name: String
+//      - weak               -  weak var name: String
+//      - unsafe_unretained  -  unowned var name: String
 //      - copy               -  X
 //   동기화 지정
 //      - atomic             -  X

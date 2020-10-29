@@ -125,12 +125,12 @@ sort(&x, compare: compare2)
 
 // 2) 코드 블록(람다)를 전달하는 것도 가능합니다.
 sort(&x, compare: { (a: Int, b: Int) -> Bool in
-  a < b
+  return a < b
 })
 
 // 3) 람다의 타입을 추론 가능하므로, 타입 생략이 가능합니다.
 sort(&x, compare: { a, b in
-  a < b
+  return a < b
 })
 
 // 4) 람다의 블록이 코드 한 줄이라면, return 생략 가능합니다.

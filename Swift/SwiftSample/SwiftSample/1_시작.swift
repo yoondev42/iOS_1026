@@ -1,5 +1,4 @@
 
-
 import Foundation
 
 // 1. 확장자: .swift
@@ -124,3 +123,6 @@ result = sub(20, 10)
 
 User.display()
 print(User.N)
+
+// Ubuntu: apt / apt-get - Package manager
+// macOS: brew.sh
