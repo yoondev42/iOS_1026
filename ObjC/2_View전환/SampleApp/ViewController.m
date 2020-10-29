@@ -12,8 +12,13 @@
 // UIWindow
 //    - rootViewController: ViewController
 //                              - UIView* view
-//     1) Interface Builder
+//                                        childView
+//                                        ...
+//   => 모든 View의 로직이 하나의 ViewController를 통해 관리되기 때문에
+//      ViewController가 거대해질 수 있다.
+//          -> ViewController 전환
 
+//     1) Interface Builder
 //     2) Storyboard
 
 @implementation ViewController
@@ -39,7 +44,7 @@
   [self.view addSubview:_childView];
   
   _childView.frame = self.view.frame;
-  _childView.transform = CGAffineTransformMakeRotation(0);  
+  _childView.transform = CGAffineTransformMakeRotation(0);
   
   [UIView commitAnimations];
 }
