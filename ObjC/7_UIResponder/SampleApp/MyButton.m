@@ -8,6 +8,16 @@
 
 @implementation MyButton
 
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  printf("MyButton - touchesBegan\n");
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  printf("MyButton - touchesEnded\n");
+}
+
+
 - (id)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
