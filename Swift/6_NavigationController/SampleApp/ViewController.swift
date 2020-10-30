@@ -10,6 +10,12 @@ class ViewController: UIViewController {
 
 
   @IBAction func onTouch(_ sender: Any) {
+    // UINavigation Controller를 코드에서 사용하는 방법
+    let naviController = UINavigationController(rootViewController:
+                                                  FirstController.create())
+    
+    naviController.modalPresentationStyle = .fullScreen
+    present(naviController, animated: true)
   }
 }
 

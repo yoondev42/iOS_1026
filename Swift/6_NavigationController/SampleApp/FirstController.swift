@@ -35,6 +35,8 @@ class FirstController: UIViewController {
   static func create() -> FirstController {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     return storyboard.instantiateViewController(withIdentifier: "FirstController") as! FirstController
+    // as!: 캐스팅에 실패할 경우, 예외가 발생합니다.
+    // as?: 캐스팅에 실패하 경우, nil을 반환합니다.
   }
 }
 
