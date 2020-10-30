@@ -49,13 +49,23 @@ class SignInController: UIViewController {
     
     let height = softKeyboardHeight(notification)
     // self.view.frame.origin.y = 0 - height
-    heightConstraint.constant = heightInitialValue + height
+    
+    
+    // Closure 안에서는 self.을 명시적으로 사용해야 한다.
+    UIView.animate(withDuration: 1.0) {
+      self.heightConstraint.constant = self.heightInitialValue + height
+      self.view.layoutIfNeeded()
+    }
+    
   }
   
   @objc func keyboardWillHide(_ notification: Notification) {
     print("keyboardWillHide")
     // self.view.frame.origin.y = 0
-    heightConstraint.constant = heightInitialValue
+    UIView.animate(withDuration: 1.0) {
+      self.heightConstraint.constant = self.heightInitialValue
+      self.view.layoutIfNeeded()
+    }
   }
   
   // 키보드의 크기를 구하는 함수
