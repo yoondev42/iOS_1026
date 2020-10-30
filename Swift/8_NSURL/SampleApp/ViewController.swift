@@ -159,10 +159,16 @@ class ViewController: UIViewController {
     // Kingfisher 장점
     //   : 이미지를 조작하는 다양한 기능을 제공하고 있습니다.
     
+    //  | >
     let processor = DownsamplingImageProcessor(size: imageView.bounds.size)
+      |> RoundCornerImageProcessor(cornerRadius: 100)
     
+    print(UIScreen.main.scale)
     imageView.kf.setImage(with: ViewController.imageURL, options: [
-      .processor(processor)
+      .processor(processor),
+      .scaleFactor(3),
+      // SE: 2 / Pro Max: 3
+      
     ])
   }
 }
