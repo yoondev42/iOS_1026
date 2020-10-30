@@ -30,6 +30,11 @@
 
 - (IBAction)segmentedValueChanged:(UISegmentedControl *)sender {
   printf("segmentedValueChanged - %ld\n", sender.selectedSegmentIndex);
+    
+  _currentSelectedIndex = sender.selectedSegmentIndex;
+  
+  // 데이터의 크기나 내용이 변경되었을 때
+  [_pickerView reloadAllComponents];
 }
 
 

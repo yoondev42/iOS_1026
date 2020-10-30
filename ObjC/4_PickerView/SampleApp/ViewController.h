@@ -9,7 +9,7 @@
 
 @property (strong, nonatomic) NSArray* animals;
 @property (strong, nonatomic) NSArray* fruits;
-@property (assign, nonatomic) int currentSelectedIndex;
+@property (assign, nonatomic) long currentSelectedIndex;
 
 @end
 
