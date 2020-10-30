@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJG-gk-zx8">
-                                <rect key="frame" x="48" y="106" width="280" height="280"/>
+                                <rect key="frame" x="47.5" y="105.5" width="280" height="280"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="280" id="ddS-za-QsF"/>
                                     <constraint firstAttribute="width" constant="280" id="oPz-4H-mi0"/>
@@ -33,13 +33,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lPH-G6-fNX">
+                                <rect key="frame" x="47.5" y="42.5" width="280" height="32"/>
+                                <segments>
+                                    <segment title="동물"/>
+                                    <segment title="과일"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="PT5-8u-Bho"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="KJG-gk-zx8" firstAttribute="top" secondItem="lPH-G6-fNX" secondAttribute="bottom" constant="32" id="HId-H2-II2"/>
                             <constraint firstItem="YcC-o1-Ne3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="O5H-Od-Jff"/>
                             <constraint firstItem="YcC-o1-Ne3" firstAttribute="top" secondItem="KJG-gk-zx8" secondAttribute="bottom" constant="64" id="Q8a-gv-stT"/>
                             <constraint firstItem="KJG-gk-zx8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WMI-G0-Ls8"/>
+                            <constraint firstItem="lPH-G6-fNX" firstAttribute="centerX" secondItem="KJG-gk-zx8" secondAttribute="centerX" id="WiU-27-HbR"/>
+                            <constraint firstItem="lPH-G6-fNX" firstAttribute="leading" secondItem="KJG-gk-zx8" secondAttribute="leading" id="cBt-Br-uV3"/>
                             <constraint firstItem="KJG-gk-zx8" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-88" id="dOk-6R-88D"/>
                         </constraints>
                     </view>
@@ -50,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-810.39999999999998" y="245.12743628185908"/>
+            <point key="canvasLocation" x="-1687.2" y="116.49175412293854"/>
         </scene>
     </scenes>
 </document>

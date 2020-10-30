@@ -8,7 +8,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (strong, nonatomic) NSArray* animals;
-
+@property (strong, nonatomic) NSArray* fruits;
+@property (assign, nonatomic) int currentSelectedIndex;
 
 @end
 
