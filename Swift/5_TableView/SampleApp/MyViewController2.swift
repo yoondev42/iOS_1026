@@ -26,12 +26,27 @@ extension MyViewController2 : UITableViewDataSource {
   // Cell의 견본을 tableView에 미리 등록하는 것이 가능합니다.
   // - tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
   
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
+    
+    cell.profileImageView.image = UIImage(named: "profile")
+    cell.contentImageView.image = UIImage(named: "content")
+    cell.nameLabel.text = "@Gildong"
+    
+    return cell
+  }
+  
+  
+  #if false
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
     cell.textLabel?.text = "Cell - \(indexPath)"
     return cell
   }
+  #endif
   
   
   #if false

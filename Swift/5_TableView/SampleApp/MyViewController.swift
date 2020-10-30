@@ -11,7 +11,7 @@ class MyViewController: UIViewController {
     
     // 견본을 등록한다.
     // tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-    
+    tableView.register(UINib(nibName: "MyCell", bundle: nil), forCellReuseIdentifier: "MyCell")
   }
 }
 
@@ -28,8 +28,18 @@ extension MyViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell: MyCell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
+    
+    cell.profileImageView.image = UIImage(named: "profile")
+    cell.contentImageView.image = UIImage(named: "content")
+      
+    return cell
+  }
+  
+  #if false
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     var cell: MyCell? = tableView.dequeueReusableCell(withIdentifier: "MyCell") as? MyCell
-    if (cell == nil) {
+    if cell == nil {
       // MyCell.xib를 Bundle에서 찾아서 생성해야 합니다.
       // [Any]? -> ?[0] -> Any? -> as? -> MyCell?
       cell = Bundle.main.loadNibNamed("MyCell", owner: nil, options: nil)?[0] as? MyCell
@@ -39,18 +49,13 @@ extension MyViewController: UITableViewDataSource {
     }
     
     if let cell = cell {
-      
       cell.profileImageView.image = UIImage(named: "profile")
       cell.contentImageView.image = UIImage(named: "content")
-      
     }
-    
-    
     
     return cell!
   }
-  
-  
+  #endif
   
   #if false
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,9 +67,8 @@ extension MyViewController: UITableViewDataSource {
   
   #if false
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   
     var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "MyCell")
-    if (cell == nil) {
+    if cell == nil {
       // cell = UITableViewCell() // !
       cell = UITableViewCell(style: .default, reuseIdentifier: "MyCell")
       print("Cell 생성 - \(indexPath)")
@@ -76,7 +80,6 @@ extension MyViewController: UITableViewDataSource {
     return cell!
   }
   #endif
-  
   
   // Cell을 데이터의 개수 만큼 생성하는 것이 아니라,
   // 화면에 필요한만큼만 생성하고, 나머지의 데이터는 기존의 Cell을 재활용해야 한다.
@@ -101,7 +104,6 @@ extension MyViewController: UITableViewDataSource {
 //   1x: content.jpg
 //   2x: content@2x.jpg
 //   3x: content@3x.jpg
-
 
 // - 레티나 디스플레이
 //   : 프로그램을 작성할 때는 375 x 667을 기준으로 작성하지만,

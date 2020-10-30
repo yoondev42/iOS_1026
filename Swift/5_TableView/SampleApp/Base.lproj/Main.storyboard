@@ -67,29 +67,47 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" textLabel="HYU-5y-VfU" detailTextLabel="M9U-o7-EOO" style="IBUITableViewCellStyleSubtitle" id="TAu-Vv-c1H">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="55.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" rowHeight="266" id="TAu-Vv-c1H" customClass="MyCell" customModule="SampleApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="266"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TAu-Vv-c1H" id="Ea0-hY-SO3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="266"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HYU-5y-VfU">
-                                                    <rect key="frame" x="16" y="10" width="33" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iIH-lL-jQI">
+                                                    <rect key="frame" x="24" y="24" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="70" id="1NE-ho-2nF"/>
+                                                        <constraint firstAttribute="width" constant="70" id="mDT-lZ-AVQ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Q6-w9-bI5">
+                                                    <rect key="frame" x="24" y="118" width="327" height="124"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q35-L0-IyP">
+                                                    <rect key="frame" x="118" y="48.5" width="233" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M9U-o7-EOO">
-                                                    <rect key="frame" x="16" y="31.5" width="44" height="14.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="q35-L0-IyP" firstAttribute="centerY" secondItem="iIH-lL-jQI" secondAttribute="centerY" id="BNL-FU-HKY"/>
+                                                <constraint firstItem="iIH-lL-jQI" firstAttribute="top" secondItem="Ea0-hY-SO3" secondAttribute="top" constant="24" id="Bt1-lJ-mJM"/>
+                                                <constraint firstItem="9Q6-w9-bI5" firstAttribute="leading" secondItem="Ea0-hY-SO3" secondAttribute="leading" constant="24" id="Dft-7o-bfe"/>
+                                                <constraint firstItem="iIH-lL-jQI" firstAttribute="leading" secondItem="Ea0-hY-SO3" secondAttribute="leading" constant="24" id="Kw0-iD-HOn"/>
+                                                <constraint firstItem="q35-L0-IyP" firstAttribute="leading" secondItem="iIH-lL-jQI" secondAttribute="trailing" constant="24" id="NyM-zK-47q"/>
+                                                <constraint firstAttribute="trailing" secondItem="q35-L0-IyP" secondAttribute="trailing" constant="24" id="VCG-bX-hG1"/>
+                                                <constraint firstItem="9Q6-w9-bI5" firstAttribute="top" secondItem="iIH-lL-jQI" secondAttribute="bottom" constant="24" id="cIY-uu-WrZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="9Q6-w9-bI5" secondAttribute="trailing" constant="24" id="rrh-VT-YXa"/>
+                                                <constraint firstAttribute="bottom" secondItem="9Q6-w9-bI5" secondAttribute="bottom" constant="24" id="vvt-Xp-HbN"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentImageView" destination="9Q6-w9-bI5" id="36r-sm-nbf"/>
+                                            <outlet property="nameLabel" destination="q35-L0-IyP" id="yo9-cH-ygo"/>
+                                            <outlet property="profileImageView" destination="iIH-lL-jQI" id="R3n-dG-QdK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -110,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYC-Xm-5qI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1110" y="137"/>
+            <point key="canvasLocation" x="1109.5999999999999" y="136.28185907046478"/>
         </scene>
     </scenes>
     <resources>

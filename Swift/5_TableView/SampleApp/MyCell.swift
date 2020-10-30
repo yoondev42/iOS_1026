@@ -5,7 +5,7 @@ class MyCell: UITableViewCell {
   @IBOutlet var profileImageView: UIImageView!
   @IBOutlet var nameLabel: UILabel!
   
-  @IBOutlet var descriptionLabel: UILabel!
+  @IBOutlet var descriptionLabel: UILabel?
   @IBOutlet var contentImageView: UIImageView!
   
   override func awakeFromNib() {
