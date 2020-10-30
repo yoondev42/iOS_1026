@@ -34,6 +34,9 @@
                                         <state key="normal" title="Storyboard 기반 TableView">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="5ur-7B-Jq5" kind="show" id="dEU-aR-XLM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -51,6 +54,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138.40000000000001" y="137.18140929535232"/>
+        </scene>
+        <!--My View Controller2-->
+        <scene sceneID="nDX-WO-U9R">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="5ur-7B-Jq5" customClass="MyViewController2" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1hX-sJ-SzZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zhG-ID-gtI">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Gpm-eL-6Fi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Gpm-eL-6Fi" firstAttribute="bottom" secondItem="zhG-ID-gtI" secondAttribute="bottom" id="8Rv-Ri-PHV"/>
+                            <constraint firstItem="Gpm-eL-6Fi" firstAttribute="trailing" secondItem="zhG-ID-gtI" secondAttribute="trailing" id="D4Z-Sl-XBH"/>
+                            <constraint firstItem="zhG-ID-gtI" firstAttribute="top" secondItem="Gpm-eL-6Fi" secondAttribute="top" id="IZw-Ec-XxB"/>
+                            <constraint firstItem="zhG-ID-gtI" firstAttribute="leading" secondItem="Gpm-eL-6Fi" secondAttribute="leading" id="Q6r-Yw-nGD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Jd4-7c-NLu"/>
+                    <connections>
+                        <outlet property="tableView" destination="zhG-ID-gtI" id="VXc-oI-YgI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fYC-Xm-5qI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1110" y="137"/>
         </scene>
     </scenes>
     <resources>
