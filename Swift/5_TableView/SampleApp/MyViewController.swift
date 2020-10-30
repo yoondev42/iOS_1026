@@ -38,6 +38,15 @@ extension MyViewController: UITableViewDataSource {
       print("Cell 재활용")
     }
     
+    if let cell = cell {
+      
+      cell.profileImageView.image = UIImage(named: "profile")
+      cell.contentImageView.image = UIImage(named: "content")
+      
+    }
+    
+    
+    
     return cell!
   }
   
