@@ -52,10 +52,10 @@
             </objects>
             <point key="canvasLocation" x="252" y="107"/>
         </scene>
-        <!--View Controller-->
+        <!--First Controller-->
         <scene sceneID="Ux3-3v-Kiu">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="dAl-Sj-m1Y" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstController" modalPresentationStyle="fullScreen" id="dAl-Sj-m1Y" customClass="FirstController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5gt-El-k1W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,52 +64,67 @@
                                 <rect key="frame" x="164" y="302" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="onTouch:" destination="dAl-Sj-m1Y" eventType="touchUpInside" id="AhP-A7-Cz3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YXR-5J-7LZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="d7T-s3-Hoc"/>
+                    <connections>
+                        <segue destination="JPO-Dd-7l4" kind="show" identifier="ShowSecondSegue" id="Xur-3i-hqT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QBM-bu-EMD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1044" y="107"/>
         </scene>
-        <!--View Controller-->
+        <!--Second Controller-->
         <scene sceneID="Hhb-kN-Jkf">
             <objects>
-                <viewController id="JPO-Dd-7l4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondController" id="JPO-Dd-7l4" customClass="SecondController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sFC-n3-ZFU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFZ-rv-e13">
                                 <rect key="frame" x="164" y="318" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="onTouch:" destination="JPO-Dd-7l4" eventType="touchUpInside" id="bCl-OL-Gi2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LZi-I9-RYs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Usx-Es-HIs"/>
+                    <connections>
+                        <segue destination="eCw-ct-L3t" kind="show" identifier="ShowThirdSegue" id="nVg-9b-vMj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYM-f8-5kV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1809" y="107"/>
         </scene>
-        <!--View Controller-->
+        <!--Third Controller-->
         <scene sceneID="g6U-5p-fI2">
             <objects>
-                <viewController id="eCw-ct-L3t" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThirdController" id="eCw-ct-L3t" customClass="ThirdController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u0L-k0-zJU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijj-pM-a0O">
                                 <rect key="frame" x="164" y="318" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="onTouch:" destination="eCw-ct-L3t" eventType="touchUpInside" id="UCN-It-TYb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bjz-6f-vjw"/>
