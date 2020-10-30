@@ -30,7 +30,7 @@
   UINib* nib = [UINib nibWithNibName:@"MyButton" bundle:bundle];
   UIView* view = [nib instantiateWithOwner:self options:nil][0];
   
-  view.frame = self.frame;
+  view.frame = self.bounds;
   self.contentView = view;
   
   [self addSubview:_contentView];
