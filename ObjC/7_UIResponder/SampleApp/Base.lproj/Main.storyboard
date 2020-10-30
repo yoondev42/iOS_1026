@@ -18,17 +18,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSF-Rs-HA0" customClass="MyButton">
-                                <rect key="frame" x="32" y="32" width="311" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gSF-Rs-HA0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="VdG-GU-UI1"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gSF-Rs-HA0" secondAttribute="bottom" constant="32" id="hy1-BN-fve"/>
-                            <constraint firstItem="gSF-Rs-HA0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="qoW-xc-xBd"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gSF-Rs-HA0" secondAttribute="trailing" constant="32" id="y6i-Kf-MDU"/>
+                            <constraint firstItem="gSF-Rs-HA0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7BG-39-XS6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gSF-Rs-HA0" secondAttribute="bottom" id="7br-Nd-NLm"/>
+                            <constraint firstItem="gSF-Rs-HA0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KiV-7V-yaQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gSF-Rs-HA0" secondAttribute="trailing" id="a8F-8y-3wD"/>
                         </constraints>
                     </view>
                 </viewController>

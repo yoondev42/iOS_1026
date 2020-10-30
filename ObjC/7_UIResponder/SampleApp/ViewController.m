@@ -2,6 +2,8 @@
 #import "ViewController.h"
 
 // UIResponder - Responder Chain
+//    Touch 이벤트는 Responder Chain 따라 전달되도록 설계되어 있습니다.
+//   : View -> UIView -> ViewController -> UIViewController -> AppDelegate -> UIWindow
 
 @implementation ViewController
 - (void)viewDidLoad {
@@ -15,10 +17,14 @@
   NSSet* t = event.allTouches;
   NSLog(@"%lu개의 터치가 발생하였습니다.", t.count);
   
+  [super touchesBegan:touches withEvent:event];
+  
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
   printf("touchesEnded\n");
+  
+  [super touchesEnded:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

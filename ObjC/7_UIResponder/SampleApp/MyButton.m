@@ -11,10 +11,14 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
   printf("MyButton - touchesBegan\n");
+  
+  [super touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
   printf("MyButton - touchesEnded\n");
+  
+  [super touchesEnded:touches withEvent:event];
 }
 
 
