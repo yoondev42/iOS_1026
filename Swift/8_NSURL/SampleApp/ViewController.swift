@@ -1,6 +1,10 @@
 
 import UIKit
 
+// !!
+import Alamofire
+import Kingfisher
+
 // '원격의 이미지'를 로드하는 방법
 
 class ViewController: UIViewController {
@@ -84,7 +88,6 @@ class ViewController: UIViewController {
         return
       }
       
-      
       print("location: \(location)")
       guard let data = try? Data(contentsOf: location) else {
         return
@@ -98,16 +101,68 @@ class ViewController: UIViewController {
       DispatchQueue.main.async {
         self.imageView.image = image
       }
-      
     }
     
     // 2) Task 비동기로 실행한다.
     task.resume()
   }
   
-  @IBAction func loadImage3(_ sender: UIButton) {}
+  // 3rd party library
+  //  1) Cocoapods                    - 보편적입니다.
+  //     - 코드를 다운로드 받습니다.
+  //       다운로드 받은 코드를 라이브러리로 빌드해서, 사용하는 형태입니다.
+  //      단점: 3rd 라이브러리를 많이 사용할 수록, 빌드 속도가 점점 느려집니다.
   
-  @IBAction func loadImage4(_ sender: UIButton) {}
+  //  2) Carthage
+  //     - 처음 설치할 때, 빌드해서 라이브러리로 링크해서 사용합니다.
+  //       처음 설치할 때 시간은 오래 걸리지만, 이 후의 빌드 속도에는 영향이 거의 없습니다.
+  //      단점
+  //        1) Carthage에서 제공되지 않는 라이브러가 있습니다.
+  //        2) Carthage 제공되는 라이브러리를 설치하는 과정에서 빌드 오류가 나면, 해결 방법이 없습니다.
   
-  @IBAction func loadImage5(_ sender: UIButton) {}
+  //  3) SPM(Swift Package Manager)
+  //     - Swift 전용
+  
+  // Android: OKHttpClient
+  //          Glide
+  //     iOS: Alamofire(Swift) / AFNetworking(ObjC)
+  //          Kingfisher
+  
+  @IBAction func loadImage3(_ sender: UIButton) {
+    AF.request(ViewController.imageURL).responseData { (response: AFDataResponse<Data>) in
+      
+      let result = response.result
+      switch result {
+      case .success(let data):
+        guard let image = UIImage(data: data) else {
+          return
+        }
+        
+        self.imageView.image = image
+        
+      case .failure(let error):
+        print(error.localizedDescription)
+      }
+    }
+  }
+  
+  // 모든 ImageView의 kf라는 프로퍼티가 생성되고, kf 안에는 이미지를 다루는 다양한 기능이 제공된다.
+  @IBAction func loadImage4(_ sender: UIButton) {
+    imageView.kf.setImage(with: ViewController.imageURL)
+  }
+  
+  @IBAction func loadImage5(_ sender: UIButton) {
+    // 문제점
+    //   - 이미지의 크기를 변환하지 않고, 바로 앱에 사용하고 있습니다.
+    //     이미지의 용량이 큰 경우, 메모리가 부족해서 앱이 비정상 종료할 가능성이 존재합니다.
+    
+    // Kingfisher 장점
+    //   : 이미지를 조작하는 다양한 기능을 제공하고 있습니다.
+    
+    let processor = DownsamplingImageProcessor(size: imageView.bounds.size)
+    
+    imageView.kf.setImage(with: ViewController.imageURL, options: [
+      .processor(processor)
+    ])
+  }
 }
