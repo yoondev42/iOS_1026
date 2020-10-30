@@ -15,6 +15,8 @@
 		7A2A5A1C254B9452006D7608 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2A5A1A254B9452006D7608 /* MyViewController.swift */; };
 		7A2A5A1D254B9452006D7608 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2A5A1B254B9452006D7608 /* MyViewController.xib */; };
 		7A2A5A20254B9D21006D7608 /* MyViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2A5A1F254B9D21006D7608 /* MyViewController2.swift */; };
+		7A2A5A24254BA5C6006D7608 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2A5A22254BA5C6006D7608 /* MyCell.swift */; };
+		7A2A5A25254BA5C6006D7608 /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2A5A23254BA5C6006D7608 /* MyCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		7A2A5A1A254B9452006D7608 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		7A2A5A1B254B9452006D7608 /* MyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyViewController.xib; sourceTree = "<group>"; };
 		7A2A5A1F254B9D21006D7608 /* MyViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController2.swift; sourceTree = "<group>"; };
+		7A2A5A22254BA5C6006D7608 /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
+		7A2A5A23254BA5C6006D7608 /* MyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				7A2A5A1A254B9452006D7608 /* MyViewController.swift */,
 				7A2A5A1B254B9452006D7608 /* MyViewController.xib */,
 				7A2A5A1F254B9D21006D7608 /* MyViewController2.swift */,
+				7A2A5A22254BA5C6006D7608 /* MyCell.swift */,
+				7A2A5A23254BA5C6006D7608 /* MyCell.xib */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -134,6 +140,7 @@
 				7A2370DB254A7F1100402BA3 /* Assets.xcassets in Resources */,
 				7A2A5A1D254B9452006D7608 /* MyViewController.xib in Resources */,
 				7A2370D9254A7F0F00402BA3 /* Main.storyboard in Resources */,
+				7A2A5A25254BA5C6006D7608 /* MyCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A2370D6254A7F0F00402BA3 /* ViewController.swift in Sources */,
+				7A2A5A24254BA5C6006D7608 /* MyCell.swift in Sources */,
 				7A2A5A20254B9D21006D7608 /* MyViewController2.swift in Sources */,
 				7A2A5A1C254B9452006D7608 /* MyViewController.swift in Sources */,
 				7A2370D2254A7F0F00402BA3 /* AppDelegate.swift in Sources */,

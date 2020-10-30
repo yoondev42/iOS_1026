@@ -10,7 +10,7 @@ class MyViewController: UIViewController {
     tableView.dataSource = self
     
     // 견본을 등록한다.
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+    // tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
     
   }
 }
@@ -27,12 +27,29 @@ extension MyViewController: UITableViewDataSource {
     return 20
   }
   
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    var cell: MyCell? = tableView.dequeueReusableCell(withIdentifier: "MyCell") as? MyCell
+    if (cell == nil) {
+      // MyCell.xib를 Bundle에서 찾아서 생성해야 합니다.
+      // [Any]? -> ?[0] -> Any? -> as? -> MyCell?
+      cell = Bundle.main.loadNibNamed("MyCell", owner: nil, options: nil)?[0] as? MyCell
+      print("Cell 생성")
+    } else {
+      print("Cell 재활용")
+    }
+    
+    return cell!
+  }
   
+  
+  
+  #if false
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
     cell.textLabel?.text = "Cell - \(indexPath)"
     return cell
   }
+  #endif
   
   #if false
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,6 +82,17 @@ extension MyViewController: UITableViewDataSource {
 }
 
 // iOS 리소스 관리
+
+// profile(70x70) - profile.jpg
+//   1x: 70x70   => profile.jpg
+//   2x  140x140 => profile@2x.jpg
+//   3x  210x210 => profile@3x.jpg
+
+// content(384x270)
+//   1x: content.jpg
+//   2x: content@2x.jpg
+//   3x: content@3x.jpg
+
 
 // - 레티나 디스플레이
 //   : 프로그램을 작성할 때는 375 x 667을 기준으로 작성하지만,
