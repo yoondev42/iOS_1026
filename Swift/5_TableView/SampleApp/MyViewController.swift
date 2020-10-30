@@ -8,6 +8,10 @@ class MyViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     tableView.dataSource = self
+    
+    // 견본을 등록한다.
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+    
   }
 }
 
@@ -26,6 +30,14 @@ extension MyViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
    
+    let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
+    cell.textLabel?.text = "Cell - \(indexPath)"
+    return cell
+  }
+  
+  #if false
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   
     var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "MyCell")
     if (cell == nil) {
       // cell = UITableViewCell() // !
@@ -38,6 +50,7 @@ extension MyViewController: UITableViewDataSource {
     cell?.textLabel?.text = "Cell - \(indexPath)"
     return cell!
   }
+  #endif
   
   
   
